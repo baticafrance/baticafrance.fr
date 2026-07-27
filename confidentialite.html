@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Politique de Confidentialité | BATI-CA FRANCE</title>
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-container": "#efeded",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-tint": "#5f5e5e",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#1b1c1c",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c9c6c3",
+                    "on-surface": "#1b1c1c",
+                    "on-secondary-fixed-variant": "#474744",
+                    "on-tertiary-fixed-variant": "#484644",
+                    "secondary-container": "#e1dfdb",
+                    "on-secondary-fixed": "#1b1c19",
+                    "secondary": "#5e5e5b",
+                    "primary": "#171818",
+                    "on-surface-variant": "#444748",
+                    "surface-bright": "#fbf9f9",
+                    "primary-fixed": "#e4e2e1",
+                    "on-error-container": "#93000a",
+                    "surface": "#fbf9f9",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c8c6c5",
+                    "on-primary-container": "#949393",
+                    "on-secondary-container": "#63635f",
+                    "secondary-fixed": "#e4e2dd",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f2f0f0",
+                    "tertiary": "#181816",
+                    "tertiary-fixed": "#e6e2de",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-container": "#969390",
+                    "outline": "#747878",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface-container-high": "#e9e8e7",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#303031",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "primary-container": "#2c2c2c",
+                    "surface-variant": "#e4e2e2",
+                    "outline-variant": "#c4c7c7",
+                    "tertiary-container": "#2d2c2a",
+                    "surface-dim": "#dbdad9",
+                    "secondary-fixed-dim": "#c8c6c2",
+                    "background": "#fbf9f9",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-padding-mobile": "60px",
+                    "gutter": "24px",
+                    "section-padding-desktop": "120px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "label-caps": ["Manrope"],
+                    "headline-xl": ["Playfair Display"],
+                    "body-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "button": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-xl": ["60px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "button": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ambient Shadows based on Style Guidance */
+        .shadow-ambient {
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+        }
+        .shadow-ambient:hover {
+            box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/10">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 dark:bg-surface-container/90 backdrop-blur-md shadow-[0px_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 ease-in-out">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex justify-between items-center h-20">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="index.html">
+                BATI-CA FRANCE
+            </a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-button text-button uppercase tracking-wider text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-300 hover:-translate-y-1" href="index.html#accueil">Accueil</a>
+<a class="font-button text-button uppercase tracking-wider text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-300 hover:-translate-y-1" href="index.html#propos">À propos</a>
+<a class="font-button text-button uppercase tracking-wider text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-300 hover:-translate-y-1" href="realisations.html">Réalisations</a>
+<a class="font-button text-button uppercase tracking-wider text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-300 hover:-translate-y-1" href="index.html#temoignages">Témoignages</a>
+<a class="font-button text-button uppercase tracking-wider text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-300 hover:-translate-y-1" href="index.html#contact">Contact</a>
+<a class="bg-primary text-on-primary px-6 py-3 font-button text-button uppercase tracking-wider rounded-lg shadow-ambient transition-all duration-300 hover:bg-primary/90" href="index.html#contact">
+                    Devis Gratuit
+                </a>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary" id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+<span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+</button>
+</div>
+<div class="md:hidden flex-col gap-1 px-margin-mobile pb-6 bg-surface" id="mobile-menu" style="display:none;">
+<a class="font-button text-button text-on-surface-variant py-3" href="index.html#accueil">Accueil</a>
+<a class="font-button text-button text-on-surface-variant py-3" href="index.html#propos">À propos</a>
+<a class="font-button text-button text-on-surface-variant py-3" href="realisations.html">Réalisations</a>
+<a class="font-button text-button text-on-surface-variant py-3" href="index.html#temoignages">Témoignages</a>
+<a class="font-button text-button text-on-surface-variant py-3" href="index.html#contact">Contact</a>
+<a class="bg-primary text-on-primary px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="index.html#contact">Devis Gratuit</a>
+</div>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const t = document.getElementById('mobile-menu-toggle');
+  const m = document.getElementById('mobile-menu');
+  const i = document.getElementById('mobile-menu-icon');
+  if (t && m && i) {
+    t.addEventListener('click', () => {
+      const open = m.style.display === 'flex';
+      m.style.display = open ? 'none' : 'flex';
+      i.textContent = open ? 'menu' : 'close';
+    });
+  }
+});
+</script>
+<main class="pt-32 pb-section-padding-desktop">
+<!-- Hero Section -->
+<header class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mb-20">
+<div class="max-w-3xl">
+<span class="font-label-caps text-label-caps text-primary/60 mb-4 block uppercase">L'Expertise Durable</span>
+<h1 class="font-headline-xl text-headline-xl mb-8 leading-tight">Politique de Confidentialité</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">BATI-CA FRANCE s’engage à protéger la vie privée de ses clients et des utilisateurs de son site internet. Cette politique détaille nos pratiques concernant la collecte et l'usage de vos données personnelles.</p>
+</div>
+</header>
+<!-- Content Grid (Bento-style layout for policy points) -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- 1. Responsable de Traitement -->
+<section class="md:col-span-8 fade-up bg-surface-container-low p-10 rounded-xl shadow-ambient">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">corporate_fare</span>
+<h2 class="font-headline-md text-headline-md">1. Responsable du traitement</h2>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-4">
+<p>La société <strong>BATI-CA FRANCE</strong>, dont le siège social est situé en France, est responsable du traitement des données à caractère personnel collectées via ce site internet.</p>
+<p>En tant qu'expert en rénovation et restauration de façades, nous accordons une importance primordiale à la sécurité de vos informations architecturales et personnelles.</p>
+</div>
+</section>
+<!-- Side Card: Iconography / Visual Aid -->
+<aside class="md:col-span-4 fade-up bg-tertiary-container text-on-tertiary-container p-10 rounded-xl flex flex-col justify-center">
+<span class="material-symbols-outlined text-6xl mb-6 opacity-40">shield_lock</span>
+<p class="font-headline-md text-headline-md opacity-90">Vos données sont traitées avec la même rigueur que nos chantiers.</p>
+</aside>
+<!-- 2. Finalités de la Collecte -->
+<section class="md:col-span-12 fade-up bg-surface p-10 rounded-xl border border-outline-variant/30 shadow-ambient">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">fact_check</span>
+<h2 class="font-headline-md text-headline-md">2. Finalités de la collecte</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="p-6 bg-surface-container-lowest rounded-lg border border-outline-variant/20">
+<h3 class="font-button text-button mb-3 text-primary uppercase">Demandes de Devis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Traiter vos demandes d'estimation pour vos projets de ravalement, isolation ou restauration de pierre.</p>
+</div>
+<div class="p-6 bg-surface-container-lowest rounded-lg border border-outline-variant/20">
+<h3 class="font-button text-button mb-3 text-primary uppercase">Contact &amp; Support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Répondre à vos interrogations techniques et assurer le suivi de la relation client.</p>
+</div>
+<div class="p-6 bg-surface-container-lowest rounded-lg border border-outline-variant/20">
+<h3 class="font-button text-button mb-3 text-primary uppercase">Amélioration</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Analyser le trafic de notre site pour optimiser l'expérience utilisateur et la présentation de nos réalisations.</p>
+</div>
+</div>
+</section>
+<!-- 3. Vos Droits (RGPD) -->
+<section class="md:col-span-7 fade-up bg-surface-container-low p-10 rounded-xl shadow-ambient">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">gavel</span>
+<h2 class="font-headline-md text-headline-md">3. Vos droits (RGPD)</h2>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">
+<p class="mb-4">Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+<ul class="list-none space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Droit d'accès et de rectification de vos données.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Droit à l'effacement ("droit à l'oubli").</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Droit à la limitation du traitement.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Droit à la portabilité des données.</span>
+</li>
+</ul>
+<p class="mt-6 font-button text-button text-primary">Pour exercer ces droits, contactez notre DPO à l'adresse contact@bati-ca-france.fr.</p>
+</div>
+</section>
+<!-- 4. Durée de Conservation -->
+<section class="md:col-span-5 fade-up bg-primary text-on-primary p-10 rounded-xl shadow-ambient">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl">schedule</span>
+<h2 class="font-headline-md text-headline-md text-on-primary">4. Durée de conservation</h2>
+</div>
+<div class="font-body-md text-body-md opacity-80 space-y-4">
+<p>Vos données sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées :</p>
+<ul class="space-y-4">
+<li class="border-b border-on-primary/10 pb-2">
+<span class="block font-bold">Prospects :</span> 
+                            3 ans à compter du dernier contact.
+                        </li>
+<li class="border-b border-on-primary/10 pb-2">
+<span class="block font-bold">Clients :</span> 
+                            Durée de la relation contractuelle plus 10 ans (obligations légales).
+                        </li>
+</ul>
+</div>
+</section>
+</div>
+<!-- Bottom Banner -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-20">
+<div class="bg-surface-container-high p-8 md:p-12 rounded-xl flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex-1">
+<h2 class="font-headline-md text-headline-md mb-2">Une question sur vos données ?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Notre équipe est à votre disposition pour vous expliquer comment nous garantissons la sécurité de vos informations.</p>
+</div>
+<a class="inline-block border border-primary px-8 py-4 font-button text-button uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-all duration-300" href="index.html#contact">
+                    Nous Contacter
+                </a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-padding-mobile md:py-section-padding-desktop bg-tertiary dark:bg-tertiary-container text-on-tertiary dark:text-on-tertiary-container">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="space-y-6">
+<div class="font-headline-md text-headline-md text-on-tertiary">BATI-CA FRANCE</div>
+<p class="font-body-md text-body-md text-on-tertiary/70">Expertise Durable en Rénovation. Restauration de patrimoine et façades haut de gamme.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-button text-button uppercase tracking-widest text-on-tertiary mb-4">Navigation</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-tertiary/70 hover:text-on-tertiary transition-colors" href="index.html#accueil">Accueil</a></li>
+<li><a class="font-body-md text-body-md text-on-tertiary/70 hover:text-on-tertiary transition-colors" href="index.html#propos">À Propos</a></li>
+<li><a class="font-body-md text-body-md text-on-tertiary/70 hover:text-on-tertiary transition-colors" href="realisations.html">Réalisations</a></li>
+<li><a class="font-body-md text-body-md text-on-tertiary/70 hover:text-on-tertiary transition-colors" href="index.html#contact">Contact</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-button text-button uppercase tracking-widest text-on-tertiary mb-4">Informations</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-tertiary/70 hover:text-on-tertiary transition-colors" href="mentions-legales.html">Mentions Légales</a></li>
+<li><a class="font-body-md text-body-md text-on-tertiary underline" href="confidentialite.html">Politique de Confidentialité</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-16 pt-8 border-t border-on-tertiary/10">
+<p class="font-body-md text-body-md text-on-tertiary/50">© 2024 BATI-CA FRANCE. Expertise Durable en Rénovation. Tous droits réservés.</p>
+</div>
+</footer>
+<script>
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Simple Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('py-2');
+                nav.classList.add('bg-surface/95');
+            } else {
+                nav.classList.remove('py-2');
+                nav.classList.remove('bg-surface/95');
+            }
+        });
+    </script>
+<div class="fixed bottom-0 left-0 w-full z-[100] p-6 md:p-8" id="cookie-consent">
+<div class="max-w-container-max mx-auto bg-primary-container text-on-primary shadow-2xl rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-on-primary/10">
+<div class="flex-1">
+<h3 class="font-headline-md text-lg mb-2 text-on-primary">Gestion des cookies</h3>
+<p class="font-body-md text-on-primary/80">Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site.</p>
+</div>
+<div class="flex gap-4 shrink-0">
+<button class="border border-on-primary/30 text-on-primary px-6 py-3 font-button text-button uppercase tracking-wider rounded-lg hover:bg-on-primary/10 transition-all duration-300">
+        Personnaliser
+      </button>
+<button class="bg-surface-container-lowest text-primary px-8 py-3 font-button text-button uppercase tracking-wider rounded-lg shadow-ambient hover:bg-white transition-all duration-300" onclick="document.getElementById('cookie-consent').style.display='none'">
+        Accepter
+      </button>
+</div>
+</div>
+</div></body></html>
