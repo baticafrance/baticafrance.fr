@@ -295,7 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     </script>
 <div class="fixed bottom-0 left-0 w-full z-[100] p-6 md:p-8 transition-all duration-500 transform translate-y-0" id="cookie-banner">
-<div class="max-w-container-max mx-auto bg-primary-container text-on-primary p-6 md:p-8 rounded-xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-outline-variant/20 backdrop-blur-md">
+<div class="max-w-container-max mx-auto" id="cookie-simple-view">
+<div class="bg-primary-container text-on-primary p-6 md:p-8 rounded-xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-outline-variant/20 backdrop-blur-md">
 <div class="flex flex-col gap-2">
 <h5 class="font-headline-md text-headline-md !text-[20px] text-white">Gestion des cookies</h5>
 <p class="font-body-md text-body-md text-on-primary/80 max-w-2xl">
@@ -303,12 +304,48 @@ document.addEventListener('DOMContentLoaded', () => {
       </p>
 </div>
 <div class="flex flex-wrap gap-4 shrink-0">
-<button class="font-button text-button uppercase tracking-wider px-6 py-3 border border-on-primary/30 rounded-lg hover:bg-on-primary/10 transition-colors">
+<button class="font-button text-button uppercase tracking-wider px-6 py-3 border border-on-primary/30 rounded-lg hover:bg-on-primary/10 transition-colors" id="cookie-open-settings">
         Personnaliser
       </button>
-<button class="font-button text-button uppercase tracking-wider px-8 py-3 bg-white text-primary rounded-lg hover:opacity-90 transition-opacity shadow-lg">
+<button class="font-button text-button uppercase tracking-wider px-8 py-3 bg-white text-primary rounded-lg hover:opacity-90 transition-opacity shadow-lg" id="cookie-accept-all">
         Accepter
       </button>
 </div>
 </div>
-</div></body></html>
+</div>
+<!-- Vue de personnalisation des cookies -->
+<div class="max-w-container-max mx-auto hidden" id="cookie-settings-view">
+<div class="bg-primary-container text-on-primary p-6 md:p-8 rounded-xl shadow-2xl border border-outline-variant/20 backdrop-blur-md">
+<h5 class="font-headline-md text-headline-md !text-[20px] text-white mb-4">Préférences de cookies</h5>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
+<div>
+<p class="font-bold mb-1 text-white">Cookies nécessaires</p>
+<p class="text-sm text-on-primary/80">Indispensables au bon fonctionnement du site. Toujours actifs.</p>
+</div>
+<input checked="" class="w-5 h-5 shrink-0" disabled="" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
+<div>
+<p class="font-bold mb-1 text-white">Cookies de mesure d'audience</p>
+<p class="text-sm text-on-primary/80">Nous aident à comprendre la fréquentation du site.</p>
+</div>
+<input checked="" class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
+<div>
+<p class="font-bold mb-1 text-white">Cookies marketing</p>
+<p class="text-sm text-on-primary/80">Utilisés pour personnaliser d'éventuelles publicités.</p>
+</div>
+<input class="w-5 h-5 shrink-0" id="cookie-marketing" type="checkbox"/>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="font-button text-button uppercase tracking-wider px-6 py-3 border border-on-primary/30 rounded-lg hover:bg-on-primary/10 transition-colors" id="cookie-refuse-all">Tout refuser</button>
+<button class="font-button text-button uppercase tracking-wider px-8 py-3 bg-white text-primary rounded-lg hover:opacity-90 transition-opacity shadow-lg" id="cookie-save-settings">Enregistrer mes choix</button>
+</div>
+</div>
+</div>
+</div>
+<script src="cookie-consent.js"></script>
+</body></html>

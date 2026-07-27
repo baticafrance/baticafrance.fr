@@ -7,6 +7,8 @@ Ce dossier contient les 4 pages de ton site, prêtes à être publiées sur GitH
 - `realisations.html` — Page complète des réalisations
 - `mentions-legales.html`
 - `confidentialite.html`
+- `cookie-consent.js` — ⚠️ fichier obligatoire, utilisé par les 4 pages ci-dessus pour la bannière cookies (Accepter / Personnaliser). Sans lui, le bouton cookies ne fonctionnera pas.
+- `formulaire-contact.html` — formulaire de contact autonome (optionnel, à part du site)
 
 ⚠️ **À propos des images** : elles restent hébergées sur les serveurs de Google (les mêmes liens que dans ton export Stitch). Elles s'afficheront normalement une fois le site en ligne, tu n'as rien à faire. Si un jour tu veux héberger tes propres images dans le repo (plus fiable sur le long terme), dis-le-moi et je t'expliquerai comment remplacer les liens.
 

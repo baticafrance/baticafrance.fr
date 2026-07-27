@@ -448,19 +448,54 @@
         });
     </script>
 <div class="fixed bottom-0 left-0 w-full z-50 p-6 md:px-gutter py-8 bg-primary-container text-white shadow-lg reveal active" id="cookie-banner">
-<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="max-w-container-max mx-auto" id="cookie-simple-view">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="flex-1">
 <p class="font-headline-md text-lg md:text-xl mb-0">
         Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site.
       </p>
 </div>
 <div class="flex gap-4 shrink-0">
-<button class="bg-bronze text-white px-8 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300">
+<button class="bg-bronze text-white px-8 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300" id="cookie-accept-all">
         Accepter
       </button>
-<button class="border border-white text-white px-8 py-3 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300">
+<button class="border border-white text-white px-8 py-3 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300" id="cookie-open-settings">
         Personnaliser
       </button>
 </div>
 </div>
-</div></body></html>
+</div>
+<!-- Vue de personnalisation des cookies -->
+<div class="max-w-container-max mx-auto hidden" id="cookie-settings-view">
+<p class="font-headline-md text-lg md:text-xl mb-4">Préférences de cookies</p>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
+<div>
+<p class="font-bold mb-1">Cookies nécessaires</p>
+<p class="text-sm text-white/80">Indispensables au bon fonctionnement du site. Toujours actifs.</p>
+</div>
+<input checked="" class="w-5 h-5 shrink-0" disabled="" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
+<div>
+<p class="font-bold mb-1">Cookies de mesure d'audience</p>
+<p class="text-sm text-white/80">Nous aident à comprendre la fréquentation du site.</p>
+</div>
+<input checked="" class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
+<div>
+<p class="font-bold mb-1">Cookies marketing</p>
+<p class="text-sm text-white/80">Utilisés pour personnaliser d'éventuelles publicités.</p>
+</div>
+<input class="w-5 h-5 shrink-0" id="cookie-marketing" type="checkbox"/>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="border border-white text-white px-6 py-3 rounded-lg font-button text-button hover:bg-white/10 transition-colors" id="cookie-refuse-all">Tout refuser</button>
+<button class="bg-bronze text-white px-8 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300" id="cookie-save-settings">Enregistrer mes choix</button>
+</div>
+</div>
+</div>
+<script src="cookie-consent.js"></script>
+</body></html>
