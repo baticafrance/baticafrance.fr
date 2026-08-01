@@ -4,12 +4,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Nos Réalisations | BATI-CA FRANCE</title>
+<meta content="Découvrez les chantiers de ravalement, d'enduit sur neuf et de joint de pierre réalisés par BATI-CA FRANCE, avec photos avant et après." name="description"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts: Playfair Display for Headings, Manrope for Body -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
@@ -108,49 +108,66 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        
-        /* Reveal animation on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
-        /* Hover lift effect for cards */
-        .card-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.08);
-        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-lift:hover { transform: translateY(-4px); box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.08); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fbf9f9; }
+        ::-webkit-scrollbar-thumb { background: #B07D62; border-radius: 4px; }
+
+        html { scroll-behavior: smooth; }
+        section[id] { scroll-margin-top: 100px; }
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+
+        /* ---- Avant / Après : curseur glissant ---- */
+        .ba-slider { position: relative; overflow: hidden; background: #dbdad9; }
+        .ba-slider img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .ba-slider .ba-layer { position: absolute; inset: 0; }
+        .ba-slider .ba-before { clip-path: inset(0 50% 0 0); }
+        .ba-handle {
+            position: absolute; top: 0; bottom: 0; left: 50%;
+            width: 2px; background: #fff; transform: translateX(-1px);
+            pointer-events: none; box-shadow: 0 0 6px rgba(0,0,0,0.35);
         }
-        ::-webkit-scrollbar-track {
-            background: #fbf9f9;
+        .ba-handle::after {
+            content: 'compare_arrows';
+            font-family: 'Material Symbols Outlined'; font-size: 22px; color: #171818;
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px; height: 44px; border-radius: 9999px;
+            background: #fff; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #B07D62;
-            border-radius: 4px;
+        .ba-range {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            margin: 0; padding: 0; opacity: 0; cursor: ew-resize; z-index: 5;
+            -webkit-appearance: none; appearance: none; background: transparent;
         }
-        html {
-            scroll-behavior: smooth;
+        .ba-range:focus-visible + .ba-handle::after { outline: 3px solid #B07D62; outline-offset: 2px; }
+        .ba-tag {
+            position: absolute; bottom: 12px; z-index: 4;
+            background: rgba(23,24,24,0.78); color: #fff;
+            padding: 4px 10px; border-radius: 2px;
+            font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            pointer-events: none;
         }
-        section[id] {
-            scroll-margin-top: 100px;
-        }
-        #mobile-menu {
-            display: none;
-        }
-        #mobile-menu.open {
-            display: flex;
+        .ba-tag-left { left: 12px; }
+        .ba-tag-right { right: 12px; }
+
+        /* ---- Avant / Après : vues superposées ---- */
+        .ba-stack img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+        .filter-chip.is-active { background: #171818; color: #ffffff; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .card-lift { transition: none; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
@@ -158,12 +175,10 @@
 <!-- TopNavBar -->
 <header class="sticky top-0 w-full z-50 bg-background/95 dark:bg-background/95 backdrop-blur-md shadow-sm">
 <nav class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
-<!-- Brand Identity -->
 <a class="flex items-center gap-3" href="index.html">
-<img alt="Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<img alt="Logo BATI-CA FRANCE" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
 <span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed uppercase">BATI-CA FRANCE</span>
 </a>
-<!-- Navigation Links -->
 <div class="hidden md:flex items-center gap-8">
 <a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#accueil">Accueil</a>
 <a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#propos">À Propos</a>
@@ -171,16 +186,13 @@
 <a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#temoignages">Témoignages</a>
 <a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#contact">Contact</a>
 </div>
-<!-- Primary Action -->
 <a class="bg-bronze text-white px-6 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300 transform hover:translate-y-[-2px]" href="index.html#contact">
                 Devis Gratuit
             </a>
-<!-- Mobile Menu Toggle -->
-<button class="md:hidden text-primary" id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="md:hidden text-primary" id="mobile-menu-toggle">
 <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
 </button>
 </nav>
-<!-- Mobile Menu Panel -->
 <div class="md:hidden flex-col gap-1 px-margin-mobile pb-6 bg-background border-t border-outline-variant/30" id="mobile-menu">
 <a class="font-button text-button text-secondary py-3" href="index.html#accueil">Accueil</a>
 <a class="font-button text-button text-secondary py-3" href="index.html#propos">À Propos</a>
@@ -190,144 +202,286 @@
 <a class="bg-bronze text-white px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="index.html#contact">Devis Gratuit</a>
 </div>
 </header>
-<!-- Hero / Title Section -->
-<section class="relative py-section-padding-mobile md:py-section-padding-desktop overflow-hidden">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10">
-<div class="md:w-2/3">
-<span class="font-label-caps text-label-caps text-bronze uppercase tracking-widest mb-4 block">Notre Portefeuille</span>
-<h1 class="font-headline-xl text-headline-xl text-primary mb-6">Nos Réalisations</h1>
-<p class="font-body-lg text-body-lg text-secondary max-w-xl">
-                    Découvrez l'excellence du savoir-faire BATI-CA FRANCE à travers une sélection de nos plus beaux projets de rénovation de façades et de restauration de pierre de taille.
+
+<!-- Hero : bandeau photo pleine largeur -->
+<section class="relative w-full overflow-hidden" style="min-height: 78vh;">
+<img class="absolute inset-0 w-full h-full object-cover" style="object-position: center 45%;" alt="Maison de plain-pied réalisée par BATI-CA FRANCE, façade enduite éclairée à la tombée du jour" src="images/realisations/j-maison-plain-pied.jpg"/>
+<div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,16,16,0.88) 0%, rgba(15,16,16,0.55) 45%, rgba(15,16,16,0.15) 100%);"></div>
+<div class="relative z-10 flex items-end w-full" style="min-height: 78vh;">
+<div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-section-padding-mobile md:pb-24">
+<span class="font-label-caps text-label-caps text-bronze uppercase tracking-widest mb-5 block">Nos chantiers</span>
+<h1 class="font-headline-xl text-headline-xl text-white mb-6 max-w-3xl">Nos Réalisations</h1>
+<p class="font-body-lg text-body-lg text-white/80 max-w-xl">
+                    Ravalement, enduit sur neuf, reprise de joints de pierre : chaque chantier est présenté avec ses photos avant et après, pour que vous jugiez le résultat par vous-même.
                 </p>
 </div>
 </div>
-<!-- Architectural background element -->
-<div class="absolute top-0 right-0 w-1/3 h-full bg-surface-container-low -z-10 opacity-50 hidden lg:block"></div>
 </section>
+
+<!-- Bandeau de transition -->
+<div class="w-full bg-background py-section-padding-mobile md:py-20"></div>
+
 <!-- Projects Gallery Grid -->
 <section class="pb-section-padding-desktop">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
-<!-- Filters / Chips -->
-<div class="flex flex-wrap gap-3 mb-12">
-<span class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps cursor-pointer">Tous les projets</span>
-<span class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest cursor-pointer transition-colors">Ravalement</span>
-<span class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest cursor-pointer transition-colors">Pierre de Taille</span>
-<span class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest cursor-pointer transition-colors">Isolation Thermique</span>
-<span class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest cursor-pointer transition-colors">Peinture Extérieure</span>
+
+<!-- Filtres -->
+<div class="flex flex-wrap gap-3 mb-12" id="filters" role="group" aria-label="Filtrer les projets par type de travaux">
+<button type="button" data-filter="tous" aria-pressed="true" class="filter-chip is-active bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Tous nos projets</button>
+<button type="button" data-filter="enduit-neuf" aria-pressed="false" class="filter-chip bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Enduit sur neuf</button>
+<button type="button" data-filter="renovation" aria-pressed="false" class="filter-chip bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Rénovation</button>
+<button type="button" data-filter="joint-pierre" aria-pressed="false" class="filter-chip bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Joint de pierre</button>
 </div>
-<!-- Grid Layout -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Project 1 -->
-<div class="reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)] group active">
-<div class="relative h-[400px] overflow-hidden">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A professional architectural photograph of a classic Haussmann-style stone building facade in Paris 16th arrondissement. The stone is pristine, ivory-colored, and meticulously restored, glowing under soft late afternoon sunlight. The intricate carvings and balcony ironwork are sharp and clean. The mood is high-end, sophisticated, and architectural." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwiGscz9hCZHXSpaz9z66-DePe9fDeoojKJRfVY2EGZAVWF5aKfdkSbxLQHMXTVNzf5Sjm_HYxHdLuDXuyz1snmS2NhFS5LazxswjpVkNE4-Ph5XSfZ-I33hUbhX7EwWT9GxxADj0NuMtz3jLCZ_3M42LjTU_9YP0hp7G7VLkAPa1jEbxLH07OrE1l8IyyR6VAkshn82Lc2IJVFYXWjOuIaHPu8tQICX9Q8_w7Ja6dwAbiMbFEUHuq0n4bw6jJU49yyfYGSb3dyG4')"></div>
-<div class="absolute top-4 left-4">
-<span class="bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Ravalement</span>
+
+<!-- Grille -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-start" id="projects-grid">
+
+<!-- ============ Projet vedette : grande maison ancienne ============ -->
+<article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
+<div class="relative grid grid-cols-1 md:grid-cols-2">
+<div class="relative" style="aspect-ratio: 3/4;">
+<img class="w-full h-full object-cover" alt="Pignon d'une grande maison ancienne entièrement décapé avant travaux" loading="lazy" src="images/realisations/f-grande-maison-avant-01.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
 </div>
+<div class="relative" style="aspect-ratio: 3/4;">
+<img class="w-full h-full object-cover" alt="Le même pignon en cours de travaux, enduit terracotta fraîchement appliqué sous échafaudage" loading="lazy" src="images/realisations/f-grande-maison-pendant.jpg"/>
+<span class="ba-tag ba-tag-left">Pendant</span>
 </div>
-<div class="p-8">
-<h3 class="font-headline-md text-headline-md text-primary mb-3">Rénovation Pierre de Taille — Paris 16ème</h3>
-<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">
-                            Restauration complète d'un immeuble haussmannien incluant le nettoyage haute pression, le rejointoiement à la chaux et la taille de pierre sculptée.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button group-hover:gap-4 transition-all" href="#">
-                            Voir le projet <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
+<div class="relative" style="aspect-ratio: 4/3;">
+<img class="w-full h-full object-cover" alt="Le pignon terminé, vu d'angle avec la façade rénovée" loading="lazy" src="images/realisations/f-grande-maison-apres-01.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
 </div>
+<div class="relative" style="aspect-ratio: 4/3;">
+<img class="w-full h-full object-cover" alt="Façade sur cour de la même maison avant travaux, enduit beige encrassé" loading="lazy" src="images/realisations/f-grande-maison-avant-02.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
 </div>
-<!-- Project 2 -->
-<div class="reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)] group active">
-<div class="relative h-[400px] overflow-hidden">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Modern renovation of a contemporary residential building with clean white plaster and warm wood accents. The lighting is bright and airy, typical of a professional architectural shoot on a clear day. The textures are smooth and precise, emphasizing professional craftsmanship and modern minimalism in a luxury suburb of France." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2FC72LpSnbjp_9Kl-6FRSSOCsatR7NklETHv7ZGx2tS6zJZFtQu1PbI5EeUUm_SLES_yimGlurATZA8zLO5fOW6tupnMFLsz3FyznLIeHlpL9YH7j9ebC3IGacYwhZXDPMzzRcm_-f3HqFv9QD4yx7qVj-x3oZI81x2n-EHqd3HLL9oK_AXypkFTqVBn8t4Jcs7lendPwXe2wl9ZmLVOSU_X2VoGbumz3VOLg6ap1bvwjCyH1s_NH3Gcjmx4Gm76G1XMq81bOkbQ')"></div>
-<div class="absolute top-4 left-4">
-<span class="bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Isolation</span>
+<div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="Façade sur rue après rénovation, enduit terracotta et encadrements gris" loading="lazy" src="images/realisations/f-grande-maison-apres-02.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
 </div>
-</div>
-<div class="p-8">
-<h3 class="font-headline-md text-headline-md text-primary mb-3">Isolation Thermique — Versailles</h3>
-<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">
-                            Mise en œuvre d'une isolation par l'extérieur haute performance avec finition enduit gratté fin sur une résidence privée contemporaine.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button group-hover:gap-4 transition-all" href="#">
-                            Voir le projet <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</div>
-<!-- Project 3 -->
-<div class="reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)] group active">
-<div class="relative h-[400px] overflow-hidden">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Close-up detail of a restored heritage stone wall. The mortar joints are perfectly clean and straight, showcasing traditional French craftsmanship. The lighting highlights the natural grain and texture of the limestone. The background shows a portion of a courtyard in a historic French town, bathed in soft, natural morning light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ07aGQVMtTDLxCACRlYPDtO7Nxf0hPLcC8iZzwXDyi3LYE4u4cznkCPGKm4hQM_4wPFUnnxGr83GbXg5HSDrWhUS9qYX7visuEPfgb71YTqvzwV9BuARvW6UWA70Y8dXAQnySuJAAxykfxUbP9brjBBTc_TuMBGsr6d8c-R9d2Jds16HNjNxCuMbn275q5w12h0PYbSV96obkOgWw59zGpgDKb4BXeTD7nCRMLIMtiNaF49o0qfpiiZy4y_UQ1aQ3Nr6Ng_TCgto')"></div>
-<div class="absolute top-4 left-4">
-<span class="bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Patrimoine</span>
-</div>
+<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
 </div>
 <div class="p-8">
-<h3 class="font-headline-md text-headline-md text-primary mb-3">Restauration Heritage — Saint-Cloud</h3>
-<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">
-                            Restauration de murets en pierre sèche et nettoyage des façades d'un domaine historique classé du XIXème siècle.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button group-hover:gap-4 transition-all" href="#">
-                            Voir le projet <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Grande maison ancienne — rénovation complète de façade</h2>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
+</article>
+
+<!-- ============ Grange en pierre : reprise de joints ============ -->
+<article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="joint-pierre">
+<div class="relative grid grid-cols-1 md:grid-cols-2">
+<div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="Façade d'une grange en pierre avant travaux, ancien enduit ciment dégradé autour du porche" loading="lazy" src="images/realisations/k-grange-pierre-avant.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
 </div>
-<!-- Project 4 -->
-<div class="reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)] group active">
-<div class="relative h-[400px] overflow-hidden">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Wide shot of a luxury hotel facade in the center of Paris after a full renovation. The evening lighting is golden and warm, accentuating the architectural depth of the facade. The street in front is clean and minimalist. The image conveys a sense of grandeur, professional reliability, and high-end urban restoration." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBN-SF_baR6pZhY7IXTfYxxsZjOBNuxR3ChhnR0NAyboIdwB8DOxPKkRiRSyRH7LWbjx-YgLE4iJewkqT6SZstno29pdvggCOVxjh6IIjT38-Njjzfiv4BpkHunX-eE-JfpQMMJ0_cxN-vydWKg8NtnPMLFrbuDDhX3ZB29T6TAGEGmNXqS_72aknR8tnjLQrHnPU1O1BVzymzBBVxTCOiiiFkG1pv7V1SQMvqCVQ5YynHCUAVBwe_8V0DFM-HHAwHFgOvsaFw1IIM')"></div>
-<div class="absolute top-4 left-4">
-<span class="bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Peinture</span>
+<div class="relative" style="aspect-ratio: 3/4;">
+<img class="w-full h-full object-cover" alt="Décapage de la façade sous échafaudage, mise à nu de la pierre" loading="lazy" src="images/realisations/k-grange-pierre-decapage.jpg"/>
+<span class="ba-tag ba-tag-left">Pendant</span>
 </div>
+<div class="relative" style="aspect-ratio: 3/4;">
+<img class="w-full h-full object-cover" alt="Reprise des joints de pierre en cours, détail de la façade" loading="lazy" src="images/realisations/k-grange-pierre-joints.jpg"/>
+<span class="ba-tag ba-tag-left">Pendant</span>
+</div>
+<div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="La même façade après décapage et reprise complète des joints, pierre entièrement dégagée" loading="lazy" src="images/realisations/k-grange-pierre-apres.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
+</div>
+<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Joint de pierre</span>
 </div>
 <div class="p-8">
-<h3 class="font-headline-md text-headline-md text-primary mb-3">Hôtel Particulier — Paris 8ème</h3>
-<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">
-                            Application de peintures siloxanes haute protection et réfection des boiseries extérieures pour cet établissement de prestige.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button group-hover:gap-4 transition-all" href="#">
-                            Voir le projet <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Grange en pierre — reprise de joints</h2>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
+</article>
+
+<!-- ============ Projet 1 : maison de village, façade rue ============ -->
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
+<div class="ba-stack relative">
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="Façade d'une maison de village avant travaux, enduit rose défraîchi et porche en cours de reprise" loading="lazy" src="images/realisations/a1-maison-village-avant.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
 </div>
-<!-- Project 5 -->
-<div class="reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)] group active">
-<div class="relative h-[400px] overflow-hidden">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Detail of a Before/After renovation of a suburban French home facade. The left side shows weathered, graying plaster, while the right side shows a brilliant, clean, warm-toned finish. The sun hits the new surface, showing its fine texture and flawless application. Professional, reassuring aesthetic for homeowners." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOlyk1EmUQJpVtLVMhQGHac4Jt4wGV_ez_l_hSoQXjt4rMg_XtT1jrc60PHbPyW7al52GzJavICNEIc7coGDPtSrcmzIdAfp48o4-yW3NcR7udifkmijo0Ls4EwmWXUoOMc9gRQUOjMC_cOpqz1dEyJKfWFWgq2liCRpgblVV0UpRgewG7NuchG0N1Ux4N2OAIBnJFwHNg2_HLZjytwYFLmSVAEUK-DCcit9xbEbROk70hjMUnUcYH41ai-wFBNogxl42roLztHUo')"></div>
-<div class="absolute top-4 left-4">
-<span class="bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Ravalement</span>
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="La même façade après ravalement, enduit crème et encadrements orangés" loading="lazy" src="images/realisations/a1-maison-village-apres.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
 </div>
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="Autre face de la même maison avant travaux" loading="lazy" src="images/realisations/a2-maison-ancienne-avant.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
+</div>
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="Autre face de la même maison après ravalement" loading="lazy" src="images/realisations/a2-maison-ancienne-apres.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
+</div>
+<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
 </div>
 <div class="p-8">
-<h3 class="font-headline-md text-headline-md text-primary mb-3">Réfection Façade — Neuilly-sur-Seine</h3>
-<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">
-                            Traitement des fissures, imperméabilisation et ravalement décoratif d'un immeuble de standing des années 70.
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison ancienne — ravalement de façade</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">
+                            Ravalement de façade avec revêtement RPE sur armature entoilée.
                         </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button group-hover:gap-4 transition-all" href="#">
-                            Voir le projet <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
-</div>
-<!-- Project 6 -->
-<div class="reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)] group active">
-<div class="relative h-[400px] overflow-hidden">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Architectural perspective of a restored stone tower at sunset. The limestone is warm and glowing against a deep blue sky. The masonry is clean and precisely pointed. This image showcases the expert restoration of historical vertical structures, emphasizing durability and architectural permanence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVqf5rGbqAl5JVw4gYNGMM838J4OPCaAG5HrJQxk2YZChXWI80T-LXL6MnGAgfAtpPwW20qQoF5TfAIuPzowhsRLVoiFVuRw3XCzWzL_Y63mbQoJv9a6zdtbRxSV9MYp1LcOWEYa1VK3AYmnu4iw5V-KCisMQ_WgYipQqpj2E25xjF9MBdOz_EgRsghWSl7g-C7gdd_59tX1snALvSwO3Ae6di1Fu8e_gVF9Fo-VFQCbNxut2uVwQsaxiv0OYd68djfXVytQxYxf8')"></div>
-<div class="absolute top-4 left-4">
-<span class="bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Pierre de Taille</span>
-</div>
+</article>
+
+<!-- ============ Projet 2 : maison volets bois — CURSEUR GLISSANT ============ -->
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
+<div class="ba-slider" data-ba-slider style="aspect-ratio: 4/3;">
+<div class="ba-layer"><img alt="Maison de village avec volets bois après rénovation, enduit crème lisse" loading="lazy" src="images/realisations/b-maison-volets-apres.jpg"/></div>
+<div class="ba-layer ba-before"><img alt="La même maison avant travaux, crépi blanc très texturé et encrassé" loading="lazy" src="images/realisations/b-maison-volets-avant.jpg"/></div>
+<input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : faites glisser pour révéler"/>
+<div class="ba-handle" aria-hidden="true"></div>
+<span class="ba-tag ba-tag-left">Avant</span>
+<span class="ba-tag ba-tag-right">Après</span>
+<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
 </div>
 <div class="p-8">
-<h3 class="font-headline-md text-headline-md text-primary mb-3">Domaine de la Tour — Chantilly</h3>
-<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">
-                            Consolidation structurelle et nettoyage par gommage basse pression de l'ensemble des parements extérieurs.
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison de village — rénovation complète</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">
+                            Rénovation complète de la façade avec armature et nouveau crépi RPE.
                         </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button group-hover:gap-4 transition-all" href="#">
-                            Voir le projet <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
+</article>
+
+<!-- ============ Projet 3 : maison de maître — CURSEUR GLISSANT ============ -->
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
+<div class="ba-slider" data-ba-slider style="aspect-ratio: 3/4;">
+<div class="ba-layer"><img alt="Maison de maître après rénovation de façade, enduit crème uniforme" loading="lazy" src="images/realisations/c-maison-maitre-apres.jpg"/></div>
+<div class="ba-layer ba-before"><img alt="La même maison de maître avant travaux, enduit fissuré et cloqué" loading="lazy" src="images/realisations/c-maison-maitre-avant.jpg"/></div>
+<input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : faites glisser pour révéler"/>
+<div class="ba-handle" aria-hidden="true"></div>
+<span class="ba-tag ba-tag-left">Avant</span>
+<span class="ba-tag ba-tag-right">Après</span>
+<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
 </div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison de maître — rénovation de façade</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">
+                            Rénovation de façade avec enduit RPE sur armature entoilée.
+                        </p>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
 </div>
+</article>
+
+<!-- ============ Projet 4 : maison contemporaine, enduit sur neuf ============ -->
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
+<div class="ba-stack relative">
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="Maison neuve à toit plat en briques monomur, avant application de l'enduit" loading="lazy" src="images/realisations/d-maison-contemporaine-avant.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
+</div>
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="La même maison neuve après application d'un enduit monocouche beige" loading="lazy" src="images/realisations/d-maison-contemporaine-apres.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
+</div>
+<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
+</div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison contemporaine — enduit sur neuf</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">
+                            Réalisation d'un enduit monocouche sur façade de maison neuve.
+                        </p>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+
+<!-- ============ Projet 5 : maison individuelle ============ -->
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
+<div class="ba-stack relative">
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="Maison en cours de travaux, échafaudage et banderole BATI-CA FRANCE" loading="lazy" src="images/realisations/e-batiment-chantier.jpg"/>
+<span class="ba-tag ba-tag-left">Pendant</span>
+</div>
+<div class="relative" style="aspect-ratio: 16/9;">
+<img alt="La même maison une fois les travaux terminés, façade gris clair" loading="lazy" src="images/realisations/e-batiment-termine.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
+</div>
+<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
+</div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison individuelle — rénovation de façade</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">
+                            Rénovation de façade.
+                        </p>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+
+<!-- ============ Maison neuve : avant / apres enduit ============ -->
+<article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
+<div class="relative">
+<div class="relative" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="Maison neuve en briques monomur avant application de l'enduit" loading="lazy" src="images/realisations/g-maison-neuve-avant.jpg"/>
+<span class="ba-tag ba-tag-left">Avant</span>
+</div>
+<div class="relative" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="La même maison après application de l'enduit monocouche beige" loading="lazy" src="images/realisations/g-maison-neuve-apres.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
+</div>
+<div class="relative" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="Vue arrière de la même maison, façade et mur de terrasse enduits" loading="lazy" src="images/realisations/g-maison-neuve-arriere.jpg"/>
+<span class="ba-tag ba-tag-left">Après</span>
+</div>
+<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
+</div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison neuve — enduit monocouche</h2>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
+<div class="relative" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="Maison neuve à étage, enduit crème et ocre, garage attenant" loading="lazy" src="images/realisations/h-maison-deux-tons.jpg"/>
+<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
+</div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison neuve — enduit deux tons</h2>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+
+<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
+<div class="relative" style="aspect-ratio: 21/9;">
+<img class="w-full h-full object-cover" alt="Maison contemporaine de plain-pied, enduit beige et volumes anthracite" loading="lazy" src="images/realisations/i-maison-beige-anthracite.jpg"/>
+<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
+</div>
+<div class="p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison neuve — enduit beige et anthracite</h2>
+<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
+                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+
+</div>
+
+<!-- Message affiché si un filtre ne renvoie aucun projet -->
+<p class="hidden font-body-lg text-body-lg text-secondary py-12 text-center" id="empty-state">
+                Aucun chantier dans cette catégorie pour le moment. Contactez-nous pour en discuter.
+            </p>
+
 <!-- CTA Section -->
-<div class="mt-20 p-12 bg-surface-container rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 reveal active">
+<div class="mt-20 p-12 bg-surface-container rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 reveal">
 <div>
 <h2 class="font-headline-md text-headline-md text-primary mb-2">Un projet similaire ?</h2>
 <p class="font-body-md text-body-md text-secondary">Nos experts sont à votre disposition pour une étude personnalisée de votre façade.</p>
@@ -343,42 +497,39 @@
 </div>
 </div>
 </section>
+
 <!-- Footer -->
 <footer class="full-width bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-padding-desktop">
-<!-- Footer Brand -->
 <div class="md:col-span-4">
 <div class="flex items-center gap-3 mb-6">
-<img alt="Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<img alt="Logo BATI-CA FRANCE" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
 <span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-surface uppercase">BATI-CA FRANCE</span>
 </div>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
                     L'expertise en rénovation de façade et taille de pierre au service de votre patrimoine depuis plus de 15 ans.
                 </p>
 </div>
-<!-- Footer Links 1 -->
 <div class="md:col-span-2 md:col-start-6">
-<h4 class="font-label-caps text-label-caps text-primary mb-6">Services</h4>
+<h3 class="font-label-caps text-label-caps text-primary mb-6">Services</h3>
 <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
-<li class=""><a class="hover:text-primary transition-colors" href="#">Ravalement</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Pierre de Taille</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Isolation (ITE)</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Nettoyage</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#contact">Ravalement</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#contact">Joint de pierre</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#contact">Enduit sur neuf</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#contact">Nettoyage</a></li>
 </ul>
 </div>
-<!-- Footer Links 2 -->
 <div class="md:col-span-2">
-<h4 class="font-label-caps text-label-caps text-primary mb-6">Entreprise</h4>
+<h3 class="font-label-caps text-label-caps text-primary mb-6">Entreprise</h3>
 <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
-<li class=""><a class="hover:text-primary transition-colors" href="index.html#propos">À Propos</a></li>
-<li class=""><a class="font-bold text-primary" href="realisations.html">Réalisations</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="index.html#contact">Contact</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="index.html#contact">Recrutement</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#propos">À Propos</a></li>
+<li><a class="font-bold text-primary" href="realisations.html">Réalisations</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#contact">Contact</a></li>
+<li><a class="hover:text-primary transition-colors" href="index.html#contact">Recrutement</a></li>
 </ul>
 </div>
-<!-- Footer Contact -->
 <div class="md:col-span-3">
-<h4 class="font-label-caps text-label-caps text-primary mb-6">Contact</h4>
+<h3 class="font-label-caps text-label-caps text-primary mb-6">Contact</h3>
 <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
 <li class="flex items-center gap-2">
 <span class="material-symbols-outlined text-sm">location_on</span>
@@ -395,10 +546,9 @@
 </ul>
 </div>
 </div>
-<!-- Copyright Bar -->
 <div class="border-t border-outline-variant py-8">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
-<span class="font-label-caps text-label-caps text-on-surface-variant">© 2024 BATI-CA FRANCE. Tous droits réservés.</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">© 2026 BATI-CA FRANCE. Tous droits réservés.</span>
 <div class="flex gap-6 font-label-caps text-label-caps text-on-surface-variant">
 <a class="hover:text-primary transition-colors" href="mentions-legales.html">Mentions Légales</a>
 <a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a>
@@ -406,48 +556,9 @@
 </div>
 </div>
 </footer>
-<!-- Scripts for Scroll Animations -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealOnScroll = () => {
-                for (let i = 0; i < revealElements.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = revealElements[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < windowHeight - elementVisible) {
-                        revealElements[i].classList.add('active');
-                    }
-                }
-            };
 
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll(); // Initial check
-
-            // Menu mobile : ouverture / fermeture
-            const menuToggle = document.getElementById('mobile-menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('mobile-menu-icon');
-
-            if (menuToggle && mobileMenu && menuIcon) {
-                menuToggle.addEventListener('click', function () {
-                    const isOpen = mobileMenu.classList.toggle('open');
-                    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                    menuIcon.textContent = isOpen ? 'close' : 'menu';
-                });
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.remove('open');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        menuIcon.textContent = 'menu';
-                    });
-                });
-            }
-        });
-    </script>
-<div class="fixed bottom-0 left-0 w-full z-50 p-6 md:px-gutter py-8 bg-primary-container text-white shadow-lg reveal active" id="cookie-banner">
+<!-- Bandeau cookies -->
+<div class="fixed bottom-0 left-0 w-full z-50 p-6 md:px-gutter py-8 bg-primary-container text-white shadow-lg" id="cookie-banner">
 <div class="max-w-container-max mx-auto" id="cookie-simple-view">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="flex-1">
@@ -465,7 +576,6 @@
 </div>
 </div>
 </div>
-<!-- Vue de personnalisation des cookies -->
 <div class="max-w-container-max mx-auto hidden" id="cookie-settings-view">
 <p class="font-headline-md text-lg md:text-xl mb-4">Préférences de cookies</p>
 <div class="space-y-4 mb-6">
@@ -497,5 +607,86 @@
 </div>
 </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    /* ---------- Apparition au défilement ---------- */
+    var revealElements = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+        var windowHeight = window.innerHeight;
+        revealElements.forEach(function (el) {
+            if (el.offsetParent === null) return;
+            if (el.getBoundingClientRect().top < windowHeight - 100) {
+                el.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('resize', revealOnScroll);
+    revealOnScroll();
+
+    /* ---------- Menu mobile ---------- */
+    var menuToggle = document.getElementById('mobile-menu-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var menuIcon = document.getElementById('mobile-menu-icon');
+    if (menuToggle && mobileMenu && menuIcon) {
+        menuToggle.addEventListener('click', function () {
+            var isOpen = mobileMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuIcon.textContent = isOpen ? 'close' : 'menu';
+        });
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                mobileMenu.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuIcon.textContent = 'menu';
+            });
+        });
+    }
+
+    /* ---------- Curseurs glissants avant / après ---------- */
+    document.querySelectorAll('[data-ba-slider]').forEach(function (slider) {
+        var range  = slider.querySelector('.ba-range');
+        var before = slider.querySelector('.ba-before');
+        var handle = slider.querySelector('.ba-handle');
+        if (!range || !before || !handle) return;
+        function update() {
+            var v = range.value;
+            before.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
+            handle.style.left = v + '%';
+        }
+        range.addEventListener('input', update);
+        update();
+    });
+
+    /* ---------- Filtres ---------- */
+    var chips = document.querySelectorAll('.filter-chip');
+    var cards = document.querySelectorAll('.project-card');
+    var emptyState = document.getElementById('empty-state');
+
+    chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            var filter = chip.dataset.filter;
+            var visible = 0;
+
+            chips.forEach(function (c) {
+                var on = (c === chip);
+                c.classList.toggle('is-active', on);
+                c.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+
+            cards.forEach(function (card) {
+                var show = (filter === 'tous') || (card.dataset.category === filter);
+                card.classList.toggle('hidden', !show);
+                if (show) visible++;
+            });
+
+            if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
+            revealOnScroll();
+        });
+    });
+});
+</script>
 <script src="cookie-consent.js"></script>
 </body></html>
