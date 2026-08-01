@@ -7,7 +7,6 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -117,19 +116,22 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-        /* Empêche le menu flottant de cacher le haut des sections lors du clic sur un lien d'ancrage */
         html {
             scroll-behavior: smooth;
         }
         section[id] {
             scroll-margin-top: 100px;
         }
-        /* Menu mobile */
         #mobile-menu {
             display: none;
         }
         #mobile-menu.open {
             display: flex;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            html { scroll-behavior: auto; }
+            .parallax-bg { background-attachment: scroll; }
         }
     </style>
 </head>
@@ -151,12 +153,10 @@
 <a class="hidden md:block bg-primary text-on-primary px-8 py-4 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300 transform hover:-translate-y-1" href="#contact">
                 Devis Gratuit
             </a>
-<!-- Mobile Menu Toggle -->
 <button class="md:hidden text-primary" id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
 <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
 </button>
 </div>
-<!-- Mobile Menu Panel -->
 <div class="md:hidden flex-col gap-1 px-margin-mobile pb-6 bg-background border-t border-outline-variant/30" id="mobile-menu">
 <a class="nav-link font-button text-button text-primary py-3" href="#accueil">Accueil</a>
 <a class="nav-link font-button text-button text-secondary py-3" href="#propos">À Propos</a>
@@ -242,39 +242,39 @@
 </a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Project 1 -->
-<div class="group cursor-pointer reveal active" style="transition-delay: 100ms;">
-<div class="aspect-[3/4] overflow-hidden rounded-xl mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end before-and-after comparison of a residential facade restoration. The image showcases a clean, limestone finish with anthracite grey details on the shutters and balconies. Modern outdoor lighting subtly illuminates the texture of the wall. Professional architectural photography style with a focus on symmetry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYirOYFc_k1co_2RNROYqF9D82flhvT09TIb5THRKQZxQDWBrT_25wljODJxMROabZ6Yo3iDjDcpWhYevobI0k05KQRQMSlFEMG1ezHHZo-VRVPhQ_HNCNVYILA-s13koQp986faU8YcfhD4VpE_AJJMf6VLoh9Ino86xOhpHF6OecU7SkIJ58RkiRBW-x9JF3Nk3yj-8o8RhC4rCHAukt4ydKzKK7LeiPxCrdxGh9El4g3mMB9ICCTLJX1_gHlp3RvF7gFerKG94"/>
+<!-- Chantier 1 : rénovation -->
+<a class="group block reveal active" href="realisations.html" style="transition-delay: 100ms;">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-6 relative bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Grande maison ancienne rénovée par BATI-CA FRANCE, façade enduite en terracotta avec encadrements gris" loading="lazy" src="images/realisations/f-grande-maison-apres-02.jpg"/>
 <div class="absolute top-4 left-4">
-<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">RAVALEMENT</span>
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">RÉNOVATION</span>
 </div>
 </div>
-<h3 class="font-headline-md text-[24px] mb-2">Résidence Les Lilas</h3>
-<p class="text-on-surface-variant font-body-md">Restauration complète de la pierre de taille et isolation thermique.</p>
-</div>
-<!-- Project 2 -->
-<div class="group cursor-pointer reveal active" style="transition-delay: 200ms;">
-<div class="aspect-[3/4] overflow-hidden rounded-xl mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a perfectly restored ornate balcony on a historic building. The wrought iron is a deep matte black, and the surrounding masonry is pristine cream. Soft morning shadows define the architectural shapes. Sophisticated and calm mood, architectural minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvJVPtBnoeCvoWYj-AjeTDE90LCVTfA5BobipjXSymQaVAMv_i7tMVltbPzv9zARMYNfZHJIZ4tzWHTFNq7JHSP2bfOuvG4pAfAeCIvMknycpH8kLN_jmsjeNm4kQnd4B9yfG8NAIZu9X7dI6WmSWR5w8DxDM2q4xC_PEDysElu_KNpN5rnwMz2Aoxc8UgTlkR7d7EImvQ7C0xdTBq2l-WvFyoYdHwxQihhOWtrbNWeTDN3vEzmSwJ9UA4yaq_WqieP6-vCrWVRc8"/>
+<h3 class="font-headline-md text-[24px] mb-2 group-hover:text-bronze transition-colors">Grande maison ancienne</h3>
+<p class="text-on-surface-variant font-body-md">Rénovation complète de façade.</p>
+</a>
+<!-- Chantier 2 : joint de pierre -->
+<a class="group block reveal active" href="realisations.html" style="transition-delay: 200ms;">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-6 relative bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Grange en pierre après reprise complète des joints, pierre apparente autour du porche" loading="lazy" src="images/realisations/k-grange-pierre-apres.jpg"/>
 <div class="absolute top-4 left-4">
-<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">PATRIMOINE</span>
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">JOINT DE PIERRE</span>
 </div>
 </div>
-<h3 class="font-headline-md text-[24px] mb-2">Manoir de Belfort</h3>
-<p class="text-on-surface-variant font-body-md">Nettoyage cryogénique et rejointoiement à la chaux traditionnelle.</p>
-</div>
-<!-- Project 3 -->
-<div class="group cursor-pointer reveal active" style="transition-delay: 300ms;">
-<div class="aspect-[3/4] overflow-hidden rounded-xl mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern villa renovation with large glass surfaces and smooth white facade. The design is sleek and minimalist. The setting includes a manicured garden with subtle architectural lighting. High contrast between the white walls and dark window frames." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4tRgVqgQK1Id09HbQfDVKjS7BdkZKoqiRgKtaqbygXCG9FlTr39s0OPdoCNE9I_J8JOTT8GG9v1f72ZAaLj0kg2D1DOSVmk6LnhRQ7vqboMDH-o7D5ZPP_TC9fzIKIYaEw_OdF_VDYNTq9jFG9-BOWnvKIc-nMlRyYA4lPfpM2eznhVDxfwOdB0GKWKag0SCBuIBBgfR9iEwRKRLb7jRrxkJ3dGTegcNayGBkjkm0Rk-OHLPPQ6SDvg1UGaosHvEemeToPiQG3pU"/>
+<h3 class="font-headline-md text-[24px] mb-2 group-hover:text-bronze transition-colors">Grange en pierre</h3>
+<p class="text-on-surface-variant font-body-md">Décapage et reprise complète des joints.</p>
+</a>
+<!-- Chantier 3 : enduit sur neuf -->
+<a class="group block reveal active" href="realisations.html" style="transition-delay: 300ms;">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-6 relative bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Maison neuve avec enduit de façade deux tons, crème et ocre" loading="lazy" src="images/realisations/h-maison-deux-tons.jpg"/>
 <div class="absolute top-4 left-4">
-<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">MODERNE</span>
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">ENDUIT SUR NEUF</span>
 </div>
 </div>
-<h3 class="font-headline-md text-[24px] mb-2">Villa Horizon</h3>
-<p class="text-on-surface-variant font-body-md">Enduit minéral projeté et isolation extérieure haute performance.</p>
-</div>
+<h3 class="font-headline-md text-[24px] mb-2 group-hover:text-bronze transition-colors">Maison neuve</h3>
+<p class="text-on-surface-variant font-body-md">Enduit de façade sur construction neuve.</p>
+</a>
 </div>
 </div>
 </section>
@@ -654,17 +654,17 @@
 <p class="text-on-surface-variant mb-6 text-sm">Recevez nos conseils et actualités sur la rénovation.</p>
 <div class="flex">
 <input class="bg-white border border-outline-variant rounded-l-lg px-4 py-3 w-full focus:ring-0 focus:border-primary" placeholder="Votre email" type="email"/>
-<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-bronze transition-colors">
+<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-bronze transition-colors" aria-label="S'inscrire à la newsletter">
 <span class="material-symbols-outlined">send</span>
 </button>
 </div>
 </div>
 </div>
 <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-<p class="text-on-surface-variant text-sm">© 2024 BATI-CA FRANCE. Tous droits réservés.</p>
+<p class="text-on-surface-variant text-sm">© 2026 BATI-CA FRANCE. Tous droits réservés.</p>
 <div class="flex gap-8">
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">qr_code_2</span></a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#" aria-label="QR code"><span class="material-symbols-outlined">qr_code_2</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#" aria-label="Site web"><span class="material-symbols-outlined">public</span></a>
 </div>
 </div>
 </div>
@@ -683,7 +683,6 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        // Run once on load
         reveal();
 
         // Menu mobile : ouverture / fermeture
@@ -703,10 +702,11 @@
             menuIcon.textContent = isOpen ? 'close' : 'menu';
         });
 
-        // Smooth Scroll pour les liens internes (ancre = section précise) + fermeture menu mobile
+        // Smooth Scroll pour les liens internes + fermeture menu mobile
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
+                if (targetId === '#') { closeMobileMenu(); return; }
                 const target = document.querySelector(targetId);
                 if (target) {
                     e.preventDefault();
@@ -730,7 +730,6 @@
 </div>
 </div>
 </div>
-<!-- Vue de personnalisation des cookies -->
 <div class="max-w-container-max mx-auto hidden" id="cookie-settings-view">
 <p class="font-headline-md text-lg md:text-xl mb-4">Préférences de cookies</p>
 <div class="space-y-4 mb-6">
