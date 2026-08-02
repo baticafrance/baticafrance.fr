@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 
-<html class="light" lang="fr"><head>
+<html class="scroll-smooth" lang="fr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Nos Réalisations | BATI-CA FRANCE</title>
-<meta content="Découvrez les chantiers de ravalement, d'enduit sur neuf et de joint de pierre réalisés par BATI-CA FRANCE, avec photos avant et après." name="description"/>
-<!-- Tailwind CSS -->
+<title>BATI-CA FRANCE | Excellence en Ravalement &amp; Rénovation</title>
+<meta content="Ravalement de façade, crépi, enduit et isolation extérieure à Belfort. Entreprise familiale, devis gratuit et sans engagement. Avis clients 5 étoiles." name="description"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Playfair Display for Headings, Manrope for Body -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
@@ -68,8 +65,8 @@
             },
             "borderRadius": {
                     "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
+                    "lg": "8px",
+                    "xl": "12px",
                     "full": "9999px"
             },
             "spacing": {
@@ -105,69 +102,37 @@
       }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
         }
-
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-lift:hover { transform: translateY(-4px); box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.08); }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fbf9f9; }
-        ::-webkit-scrollbar-thumb { background: #B07D62; border-radius: 4px; }
-
-        html { scroll-behavior: smooth; }
-        section[id] { scroll-margin-top: 100px; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
-
-        /* ---- Avant / Après : curseur glissant ---- */
-        .ba-slider { position: relative; overflow: hidden; background: #dbdad9; }
-        .ba-slider img { display: block; width: 100%; height: 100%; object-fit: cover; }
-        .ba-slider .ba-layer { position: absolute; inset: 0; }
-        .ba-slider .ba-before { clip-path: inset(0 50% 0 0); }
-        .ba-handle {
-            position: absolute; top: 0; bottom: 0; left: 50%;
-            width: 2px; background: #fff; transform: translateX(-1px);
-            pointer-events: none; box-shadow: 0 0 6px rgba(0,0,0,0.35);
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .ba-handle::after {
-            content: 'compare_arrows';
-            font-family: 'Material Symbols Outlined'; font-size: 22px; color: #171818;
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 44px; height: 44px; border-radius: 9999px;
-            background: #fff; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        .ba-range {
-            position: absolute; inset: 0; width: 100%; height: 100%;
-            margin: 0; padding: 0; opacity: 0; cursor: ew-resize; z-index: 5;
-            -webkit-appearance: none; appearance: none; background: transparent;
+        html {
+            scroll-behavior: smooth;
         }
-        .ba-range:focus-visible + .ba-handle::after { outline: 3px solid #B07D62; outline-offset: 2px; }
-        .ba-tag {
-            position: absolute; bottom: 12px; z-index: 4;
-            background: rgba(23,24,24,0.78); color: #fff;
-            padding: 4px 10px; border-radius: 2px;
-            font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-            pointer-events: none;
+        section[id] {
+            scroll-margin-top: 100px;
         }
-        .ba-tag-left { left: 12px; }
-        .ba-tag-right { right: 12px; }
-
-        /* ---- Avant / Après : vues superposées ---- */
-        .ba-stack img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-        .filter-chip.is-active { background: #171818; color: #ffffff; }
-
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.open {
+            display: flex;
+        }
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity: 1; transform: none; transition: none; }
-            .card-lift { transition: none; }
             html { scroll-behavior: auto; }
+            .parallax-bg { background-attachment: scroll; }
         }
     </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -266,407 +231,597 @@ document.addEventListener('DOMContentLoaded', function () {
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TTMF71Y4E"></script>
 </head>
 <body class="bg-background text-on-background font-body-md">
-<!-- TopNavBar -->
-<header class="sticky top-0 w-full z-50 bg-background/95 dark:bg-background/95 backdrop-blur-md shadow-sm">
-<nav class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
-<a class="flex items-center gap-3" href="index.html">
-<img alt="Logo BATI-CA FRANCE" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
-<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed uppercase">BATI-CA FRANCE</span>
-</a>
-<div class="hidden md:flex items-center gap-8">
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#accueil">Accueil</a>
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#propos">À Propos</a>
-<a class="font-button text-button text-primary border-b-2 border-primary pb-1" href="realisations.html">Réalisations</a>
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#temoignages">Témoignages</a>
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#contact">Contact</a>
+<!-- Header / TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-background/95 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
+<div class="flex items-center gap-4">
+<img alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
 </div>
-<a class="bg-bronze text-white px-6 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300 transform hover:translate-y-[-2px]" href="index.html#contact">
+<nav class="hidden md:flex gap-8 items-center">
+<a class="nav-link font-button text-button text-primary border-b-2 border-primary pb-1" href="#accueil">Accueil</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="#propos">À Propos</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="realisations.html">Réalisations</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="#temoignages">Témoignages</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="#contact">Contact</a>
+</nav>
+<a class="hidden md:block bg-primary text-on-primary px-8 py-4 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300 transform hover:-translate-y-1" href="#contact">
                 Devis Gratuit
             </a>
-<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="md:hidden text-primary" id="mobile-menu-toggle">
+<button class="md:hidden text-primary" id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
 <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
 </button>
-</nav>
+</div>
 <div class="md:hidden flex-col gap-1 px-margin-mobile pb-6 bg-background border-t border-outline-variant/30" id="mobile-menu">
-<a class="font-button text-button text-secondary py-3" href="index.html#accueil">Accueil</a>
-<a class="font-button text-button text-secondary py-3" href="index.html#propos">À Propos</a>
-<a class="font-button text-button text-primary py-3" href="realisations.html">Réalisations</a>
-<a class="font-button text-button text-secondary py-3" href="index.html#temoignages">Témoignages</a>
-<a class="font-button text-button text-secondary py-3" href="index.html#contact">Contact</a>
-<a class="bg-bronze text-white px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="index.html#contact">Devis Gratuit</a>
+<a class="nav-link font-button text-button text-primary py-3" href="#accueil">Accueil</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="#propos">À Propos</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="realisations.html">Réalisations</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="#temoignages">Témoignages</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="#contact">Contact</a>
+<a class="bg-primary text-on-primary px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="#contact">Devis Gratuit</a>
 </div>
 </header>
-
-<!-- Hero : bandeau photo pleine largeur -->
-<section class="relative w-full overflow-hidden" style="min-height: 78vh;">
-<img class="absolute inset-0 w-full h-full object-cover" style="object-position: center 45%;" alt="Maison de plain-pied réalisée par BATI-CA FRANCE, façade enduite éclairée à la tombée du jour" src="images/realisations/j-maison-plain-pied.jpg"/>
-<div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,16,16,0.88) 0%, rgba(15,16,16,0.55) 45%, rgba(15,16,16,0.15) 100%);"></div>
-<div class="relative z-10 flex items-end w-full" style="min-height: 78vh;">
-<div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-section-padding-mobile md:pb-24">
-<span class="font-label-caps text-label-caps text-bronze uppercase tracking-widest mb-5 block">Nos chantiers</span>
-<h1 class="font-headline-xl text-headline-xl text-white mb-6 max-w-3xl">Nos Réalisations</h1>
-<p class="font-body-lg text-body-lg text-white/80 max-w-xl">
-                    Ravalement, enduit sur neuf, reprise de joints de pierre : chaque chantier est présenté avec ses photos avant et après, pour que vous jugiez le résultat par vous-même.
-                </p>
+<main>
+<!-- Section 1: Hero -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden" id="accueil">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-primary/40 z-10"></div>
+<div class="w-full h-full parallax-bg" data-alt="A cinematic, high-resolution architectural photograph of a prestigious Haussmann-style Paris facade during the golden hour. The intricate stone carvings, wrought iron balconies, and tall windows are bathed in warm, soft sunlight, highlighting the texture and craftsmanship of the restoration. The scene is elegant and high-end, evoking a sense of heritage and luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDryGAubwLVPiltTZpnYeyOjb5DR5P68zBAmW2cy0_Pp2ruco75n8fODVSPsBLqtE9RQE8DDCN6vGATVzfZAqYRBlC_DHI-qjxEhIp9OZ99l2zQuYrB9fak_ojHa6oqAsbQcPve5oWHBQsqhScNEIH6UEQ5y6NvHYmXMxy-dsEETruNt-SPivuGserUz6NAopOItVKtYtQT6ABG5uVMwG52EaDMeohSbs_iQ6UvsRkoTBc9nP0fwqEuJbGKVowZN3yI6sadR0h26w')">
+</div>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-mobile md:px-gutter w-full">
+<div class="max-w-2xl text-on-primary reveal active">
+<span class="font-label-caps text-label-caps tracking-[0.2em] mb-6 block text-white/80">UN SAVOIR-FAIRE FAMILIAL DE PÈRE EN FILS</span>
+<h1 class="font-headline-xl text-headline-xl mb-8">Redonner vie à l'architecture d'exception.</h1>
+<p class="font-body-lg text-body-lg mb-12 text-white/90 leading-relaxed">Spécialiste du ravalement de façade et de la rénovation haut de gamme, BATI-CA FRANCE sublime vos espaces avec la précision de l'artisanat français.</p>
+<div class="flex flex-col sm:flex-row gap-6">
+<a class="bg-bronze text-white px-10 py-5 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300 text-center" href="#contact">
+                            Demander un devis
+                        </a>
+<a class="border border-white/50 backdrop-blur-sm text-white px-10 py-5 rounded-lg font-button text-button hover:bg-white/10 transition-all duration-300 text-center" href="realisations.html">
+                            Nos Projets
+                        </a>
+</div>
 </div>
 </div>
 </section>
-
-<!-- Bandeau de transition -->
-<div class="w-full bg-background py-section-padding-mobile md:py-20"></div>
-
-<!-- Projects Gallery Grid -->
-<section class="pb-section-padding-desktop">
+<!-- Section 2: À Propos -->
+<section class="py-section-padding-desktop bg-surface-container-lowest overflow-hidden" id="propos">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
-
-<!-- Filtres -->
-<div class="flex flex-wrap gap-3 mb-12" id="filters" role="group" aria-label="Filtrer les projets par type de travaux">
-<button type="button" data-filter="tous" aria-pressed="true" class="filter-chip is-active bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Tous nos projets</button>
-<button type="button" data-filter="enduit-neuf" aria-pressed="false" class="filter-chip bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Enduit sur neuf</button>
-<button type="button" data-filter="renovation" aria-pressed="false" class="filter-chip bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Rénovation</button>
-<button type="button" data-filter="joint-pierre" aria-pressed="false" class="filter-chip bg-surface-container text-on-surface-variant px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-highest transition-colors">Joint de pierre</button>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 reveal active">
+<span class="font-label-caps text-label-caps text-bronze mb-4 block">NOTRE HÉRITAGE</span>
+<h2 class="font-headline-lg text-headline-lg mb-8">Deux générations d'excellence artisanale.</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md">
+<p class="">Fort d'un héritage familial s'étendant sur deux générations, BATI-CA FRANCE s'est imposé comme une référence incontournable de la rénovation de patrimoine dans la région.</p>
+<p class="">Notre philosophie repose sur trois piliers fondamentaux : l'Excellence technique, la Proximité avec nos clients et le Respect du geste artisanal. Avec un savoir-faire transmis de père en fils, nous traitons chaque bâtiment comme une pièce d'histoire.</p>
 </div>
-
-<!-- Grille -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-start" id="projects-grid">
-
-<!-- ============ Projet vedette : grande maison ancienne ============ -->
-<article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
-<div class="relative grid grid-cols-1 md:grid-cols-2">
-<div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Pignon d'une grande maison ancienne entièrement décapé avant travaux" loading="lazy" src="images/realisations/f-grande-maison-avant-01.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Le même pignon en cours de travaux, enduit terracotta fraîchement appliqué sous échafaudage" loading="lazy" src="images/realisations/f-grande-maison-pendant.jpg"/>
-<span class="ba-tag ba-tag-left">Pendant</span>
-</div>
-<div class="relative" style="aspect-ratio: 4/3;">
-<img class="w-full h-full object-cover" alt="Le pignon terminé, vu d'angle avec la façade rénovée" loading="lazy" src="images/realisations/f-grande-maison-apres-01.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<div class="relative" style="aspect-ratio: 4/3;">
-<img class="w-full h-full object-cover" alt="Façade sur cour de la même maison avant travaux, enduit beige encrassé" loading="lazy" src="images/realisations/f-grande-maison-avant-02.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Façade sur rue après rénovation, enduit terracotta et encadrements gris" loading="lazy" src="images/realisations/f-grande-maison-apres-02.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Grande maison ancienne — rénovation complète de façade</h2>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Grange en pierre : reprise de joints ============ -->
-<article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="joint-pierre">
-<div class="relative grid grid-cols-1 md:grid-cols-2">
-<div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Façade d'une grange en pierre avant travaux, ancien enduit ciment dégradé autour du porche" loading="lazy" src="images/realisations/k-grange-pierre-avant.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Décapage de la façade sous échafaudage, mise à nu de la pierre" loading="lazy" src="images/realisations/k-grange-pierre-decapage.jpg"/>
-<span class="ba-tag ba-tag-left">Pendant</span>
-</div>
-<div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Reprise des joints de pierre en cours, détail de la façade" loading="lazy" src="images/realisations/k-grange-pierre-joints.jpg"/>
-<span class="ba-tag ba-tag-left">Pendant</span>
-</div>
-<div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="La même façade après décapage et reprise complète des joints, pierre entièrement dégagée" loading="lazy" src="images/realisations/k-grange-pierre-apres.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Joint de pierre</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Grange en pierre — reprise de joints</h2>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Projet 1 : maison de village, façade rue ============ -->
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
-<div class="ba-stack relative">
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Façade d'une maison de village avant travaux, enduit rose défraîchi et porche en cours de reprise" loading="lazy" src="images/realisations/a1-maison-village-avant.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="La même façade après ravalement, enduit crème et encadrements orangés" loading="lazy" src="images/realisations/a1-maison-village-apres.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Autre face de la même maison avant travaux" loading="lazy" src="images/realisations/a2-maison-ancienne-avant.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Autre face de la même maison après ravalement" loading="lazy" src="images/realisations/a2-maison-ancienne-apres.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison ancienne — ravalement de façade</h2>
-<p class="font-body-md text-body-md text-secondary mb-6">
-                            Ravalement de façade avec revêtement RPE sur armature entoilée.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Projet 2 : maison volets bois — CURSEUR GLISSANT ============ -->
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
-<div class="ba-slider" data-ba-slider style="aspect-ratio: 4/3;">
-<div class="ba-layer"><img alt="Maison de village avec volets bois après rénovation, enduit crème lisse" loading="lazy" src="images/realisations/b-maison-volets-apres.jpg"/></div>
-<div class="ba-layer ba-before"><img alt="La même maison avant travaux, crépi blanc très texturé et encrassé" loading="lazy" src="images/realisations/b-maison-volets-avant.jpg"/></div>
-<input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : faites glisser pour révéler"/>
-<div class="ba-handle" aria-hidden="true"></div>
-<span class="ba-tag ba-tag-left">Avant</span>
-<span class="ba-tag ba-tag-right">Après</span>
-<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison de village — rénovation complète</h2>
-<p class="font-body-md text-body-md text-secondary mb-6">
-                            Rénovation complète de la façade avec armature et nouveau crépi RPE.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Projet 3 : maison de maître — CURSEUR GLISSANT ============ -->
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
-<div class="ba-slider" data-ba-slider style="aspect-ratio: 3/4;">
-<div class="ba-layer"><img alt="Maison de maître après rénovation de façade, enduit crème uniforme" loading="lazy" src="images/realisations/c-maison-maitre-apres.jpg"/></div>
-<div class="ba-layer ba-before"><img alt="La même maison de maître avant travaux, enduit fissuré et cloqué" loading="lazy" src="images/realisations/c-maison-maitre-avant.jpg"/></div>
-<input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : faites glisser pour révéler"/>
-<div class="ba-handle" aria-hidden="true"></div>
-<span class="ba-tag ba-tag-left">Avant</span>
-<span class="ba-tag ba-tag-right">Après</span>
-<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison de maître — rénovation de façade</h2>
-<p class="font-body-md text-body-md text-secondary mb-6">
-                            Rénovation de façade avec enduit RPE sur armature entoilée.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Projet 4 : maison contemporaine, enduit sur neuf ============ -->
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
-<div class="ba-stack relative">
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Maison neuve à toit plat en briques monomur, avant application de l'enduit" loading="lazy" src="images/realisations/d-maison-contemporaine-avant.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="La même maison neuve après application d'un enduit monocouche beige" loading="lazy" src="images/realisations/d-maison-contemporaine-apres.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison contemporaine — enduit sur neuf</h2>
-<p class="font-body-md text-body-md text-secondary mb-6">
-                            Réalisation d'un enduit monocouche sur façade de maison neuve.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Projet 5 : maison individuelle ============ -->
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
-<div class="ba-stack relative">
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Maison en cours de travaux, échafaudage et banderole BATI-CA FRANCE" loading="lazy" src="images/realisations/e-batiment-chantier.jpg"/>
-<span class="ba-tag ba-tag-left">Pendant</span>
-</div>
-<div class="relative" style="aspect-ratio: 16/9;">
-<img alt="La même maison une fois les travaux terminés, façade gris clair" loading="lazy" src="images/realisations/e-batiment-termine.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison individuelle — rénovation de façade</h2>
-<p class="font-body-md text-body-md text-secondary mb-6">
-                            Rénovation de façade.
-                        </p>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<!-- ============ Maison neuve : avant / apres enduit ============ -->
-<article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
-<div class="relative">
-<div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Maison neuve en briques monomur avant application de l'enduit" loading="lazy" src="images/realisations/g-maison-neuve-avant.jpg"/>
-<span class="ba-tag ba-tag-left">Avant</span>
-</div>
-<div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="La même maison après application de l'enduit monocouche beige" loading="lazy" src="images/realisations/g-maison-neuve-apres.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Vue arrière de la même maison, façade et mur de terrasse enduits" loading="lazy" src="images/realisations/g-maison-neuve-arriere.jpg"/>
-<span class="ba-tag ba-tag-left">Après</span>
-</div>
-<span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison neuve — enduit monocouche</h2>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
-<div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Maison neuve à étage, enduit crème et ocre, garage attenant" loading="lazy" src="images/realisations/h-maison-deux-tons.jpg"/>
-<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison neuve — enduit deux tons</h2>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-<article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
-<div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Maison contemporaine de plain-pied, enduit beige et volumes anthracite" loading="lazy" src="images/realisations/i-maison-beige-anthracite.jpg"/>
-<span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
-</div>
-<div class="p-8">
-<h2 class="font-headline-md text-headline-md text-primary mb-3">Maison neuve — enduit beige et anthracite</h2>
-<a class="inline-flex items-center gap-2 text-bronze font-button text-button hover:gap-4 transition-all" href="index.html#contact">
-                            Demander un devis <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</article>
-
-</div>
-
-<!-- Message affiché si un filtre ne renvoie aucun projet -->
-<p class="hidden font-body-lg text-body-lg text-secondary py-12 text-center" id="empty-state">
-                Aucun chantier dans cette catégorie pour le moment. Contactez-nous pour en discuter.
-            </p>
-
-<!-- CTA Section -->
-<div class="mt-20 p-12 bg-surface-container rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 reveal">
+<div class="mt-12 grid grid-cols-2 gap-8">
 <div>
-<h2 class="font-headline-md text-headline-md text-primary mb-2">Un projet similaire ?</h2>
-<p class="font-body-md text-body-md text-secondary">Nos experts sont à votre disposition pour une étude personnalisée de votre façade.</p>
+<span class="block font-headline-md text-headline-md text-primary font-bold">400+</span>
+<span class="font-label-caps text-label-caps text-secondary">Projets Réalisés</span>
 </div>
-<div class="flex gap-4">
-<a class="bg-primary text-white px-8 py-4 rounded-lg font-button text-button hover:bg-bronze transition-colors text-center" href="index.html#contact">
-                        Nous Contacter
-                    </a>
-<a class="border border-primary text-primary px-8 py-4 rounded-lg font-button text-button hover:bg-primary hover:text-white transition-colors text-center" href="index.html">
-                        Retour Accueil
-                    </a>
+<div>
+</div>
+</div>
+</div>
+<div class="md:col-span-6 md:col-start-8 relative reveal active" style="transition-delay: 200ms;">
+<div class="aspect-[4/5] bg-surface-container rounded-xl overflow-hidden shadow-[0px_20px_50px_rgba(0,0,0,0.08)]">
+<img class="w-full h-full object-cover" data-alt="A portrait-style photograph showing an expert artisan working on a stone facade restoration. The artisan, wearing professional grey workwear, is focused on detailed masonry work using traditional tools. The lighting is natural and bright, emphasizing the dust and texture of the stone against a background of high-end renovation scaffolding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuwprlLMZNpZ3daj882WWyxFrDCANzNlAxhOjxmY2as7HZUnFzjmXo0xqD7P1nJFSImdpApo0fU6dqi3VezRHlk4fEgUpXzTfBafibTjGKG--GMUmTScAQfbsFRePDVFuyvTSZ_MMzDQx-_7JyNtfszjTjhLmbH-migPFhM-M4x-5fRNFweaVZJLu6U-wWv-8UqINsADmsKUhpY0FkPndkmTxmKuxyiLXtW3Uqs7cz-j_6QGQguVmQkNleDo2rmzeY0Jq8C9QOs5o"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-white p-8 shadow-lg rounded-lg hidden lg:block">
+<p class="font-label-caps text-label-caps text-secondary mb-4">PARTENAIRES CONFIANCE</p>
+<div class="flex gap-6 grayscale opacity-60">
+<span class="font-bold">WEBER</span>
+<span class="font-bold">ZOLPAN</span>
+<span class="font-bold">STO</span>
+<span class="font-bold">PAREXLANKO</span>
+</div>
+</div>
 </div>
 </div>
 </div>
 </section>
-
-<!-- Footer -->
-<footer class="full-width bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-padding-desktop">
-<div class="md:col-span-4">
-<div class="flex items-center gap-3 mb-6">
-<img alt="Logo BATI-CA FRANCE" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
-<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-surface uppercase">BATI-CA FRANCE</span>
+<!-- Section 3: Nos Réalisations (Preview) -->
+<section class="py-section-padding-desktop bg-background" id="realisations">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal active">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-bronze mb-4 block">NOS RÉALISATIONS</span>
+<h2 class="font-headline-lg text-headline-lg">Le renouveau du patrimoine bâti.</h2>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
-                    L'expertise en rénovation de façade et taille de pierre au service de votre patrimoine, dans le Territoire de Belfort et le Nord Franche-Comté.
-                </p>
+<a class="font-button text-button text-primary border-b-2 border-bronze pb-1 hover:text-bronze transition-colors flex items-center gap-2" href="realisations.html">
+                        Voir toutes nos réalisations <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Chantier 1 : rénovation -->
+<a class="group block reveal active" href="realisations.html" style="transition-delay: 100ms;">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-6 relative bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Grande maison ancienne rénovée par BATI-CA FRANCE, façade enduite en terracotta avec encadrements gris" loading="lazy" src="images/realisations/f-grande-maison-apres-02.jpg"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">RÉNOVATION</span>
+</div>
+</div>
+<h3 class="font-headline-md text-[24px] mb-2 group-hover:text-bronze transition-colors">Grande maison ancienne</h3>
+<p class="text-on-surface-variant font-body-md">Rénovation complète de façade.</p>
+</a>
+<!-- Chantier 2 : joint de pierre -->
+<a class="group block reveal active" href="realisations.html" style="transition-delay: 200ms;">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-6 relative bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Grange en pierre après reprise complète des joints, pierre apparente autour du porche" loading="lazy" src="images/realisations/k-grange-pierre-apres.jpg"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">JOINT DE PIERRE</span>
+</div>
+</div>
+<h3 class="font-headline-md text-[24px] mb-2 group-hover:text-bronze transition-colors">Grange en pierre</h3>
+<p class="text-on-surface-variant font-body-md">Décapage et reprise complète des joints.</p>
+</a>
+<!-- Chantier 3 : enduit sur neuf -->
+<a class="group block reveal active" href="realisations.html" style="transition-delay: 300ms;">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-6 relative bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Maison neuve avec enduit de façade deux tons, crème et ocre" loading="lazy" src="images/realisations/h-maison-deux-tons.jpg"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-sm font-label-caps text-[10px]">ENDUIT SUR NEUF</span>
+</div>
+</div>
+<h3 class="font-headline-md text-[24px] mb-2 group-hover:text-bronze transition-colors">Maison neuve</h3>
+<p class="text-on-surface-variant font-body-md">Enduit de façade sur construction neuve.</p>
+</a>
+</div>
+</div>
+</section>
+<!-- Section 4: Témoignages -->
+<section class="py-section-padding-desktop bg-surface-container-low" id="temoignages">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="text-center mb-16 reveal active">
+<span class="font-label-caps text-label-caps text-bronze mb-4 block">TEMOIGNAGES CLIENTS</span>
+<h2 class="font-headline-lg text-headline-lg mb-6">La satisfaction au cœur de nos chantiers.</h2>
+<div class="flex flex-col items-center justify-center gap-3">
+<div class="flex items-center gap-4">
+<div class="flex text-amber-400">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-on-surface-variant">Avis 5 étoiles vérifiés sur Google</span>
+</div>
+<a class="font-button text-button text-primary border-b-2 border-bronze pb-1 hover:text-bronze transition-colors" href="https://share.google/lSIS2s6g5fnpIzuVx" rel="noopener" target="_blank">
+                Voir tous nos avis sur Google
+            </a>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Entreprise familiale très sérieuse. Délais d'exécution très rapide. Namik et son papa sont des personnes formidables et très professionnelles. Je recommande vivement cette entreprise. Encore merci Namik et bonne continuation."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">LE</div>
+<div>
+<p class="font-bold text-primary">Laetitia EGLIN</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 8 MOIS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Entreprise très sérieuse, crépis réalisés dans les règles de l'art. Je suis très satisfait du résultat, et je recommande fortement Bati Ca."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">AB</div>
+<div>
+<p class="font-bold text-primary">amar bouadma</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 10 MOIS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Entreprise avec des tarifs et des délais compétitifs ! Le travail est soigné et propre…"</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">AE</div>
+<div>
+<p class="font-bold text-primary">Anais Ehret</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 10 MOIS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Muito bom trabalho, podem confiar, muito serios e profissionais."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">RP</div>
+<div>
+<p class="font-bold text-primary">Rui Pires</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A UN AN</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Excellente expérience avec BATI CA pour la réalisation de la façade de ma nouvelle maison. L'équipe a démontré une grande expertise. Le travail a été exécuté…"</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">KE</div>
+<div>
+<p class="font-bold text-primary">Karam EL HABOUTI</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A UN AN</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Reprise à faire suite aux travaux neufs. Prise en charge rapide, travaux rapides, résultat au top."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">BE</div>
+<div>
+<p class="font-bold text-primary">Benoît Emonin</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Entreprise sérieuse, travail de qualité, artisans très gentils et agréables."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">BT</div>
+<div>
+<p class="font-bold text-primary">Benjamin TOURNIER</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Entreprise sérieuse, travail de qualité. Nous sommes très satisfaits de la prestation de Bati-Ca (peinture façade extérieure d'une maison avec bardage bois)."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">JS</div>
+<div>
+<p class="font-bold text-primary">johanne sandras</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Très bonne entreprise qui réalise un travail sérieux et de qualité."</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">DV</div>
+<div>
+<p class="font-bold text-primary">David Vonfelt</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Alors quoi dire de plus qu'on ne peut pas être plus satisfait que ça. C'est une entreprise sérieuse, à l'écoute, de bons conseils, minutieuse…"</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">MC</div>
+<div>
+<p class="font-bold text-primary">Mamourette68 C</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Crépi de façade achevé début mars. Petite entreprise sérieuse, professionnelle et dynamique. Les travaux réalisés sont impeccables et le personnel est vraiment…"</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">CR</div>
+<div>
+<p class="font-bold text-primary">Chantal RELANGE</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Une entreprise familiale qui a réalisé un travail soigné et efficace dans des délais corrects. Contact sympathique. Nous recommandons !"</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">FT</div>
+<div>
+<p class="font-bold text-primary">Françoise touzot</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] reveal active">
+<div class="flex text-amber-400 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface mb-6 text-[15px] leading-relaxed">"Intervention dans le cadre d'une rénovation, très satisfait du travail de Mr Cakir et de son équipe 👍…"</p>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary shrink-0">DC</div>
+<div>
+<p class="font-bold text-primary">devaux cedric</p>
+<p class="text-xs text-secondary font-label-caps">AVIS GOOGLE · IL Y A 2 ANS</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Contact -->
+<section class="py-section-padding-desktop bg-background" id="contact">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+<div class="md:col-span-5 reveal active">
+<span class="font-label-caps text-label-caps text-bronze mb-4 block">CONTACTEZ-NOUS</span>
+<h2 class="font-headline-lg text-headline-lg mb-8">Parlons de votre projet de rénovation.</h2>
+<div class="space-y-10">
+<div class="flex gap-6 items-start">
+<span class="material-symbols-outlined text-bronze p-3 bg-surface-container rounded-full">location_on</span>
+<div>
+<h4 class="font-bold text-primary mb-1">Adresse</h4>
+<p class="text-on-surface-variant">5 rue de Bruxelles, 90000 BELFORT</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<span class="material-symbols-outlined text-bronze p-3 bg-surface-container rounded-full">phone</span>
+<div>
+<h4 class="font-bold text-primary mb-1">Téléphone</h4>
+<p class="text-on-surface-variant"><a class="hover:text-bronze transition-colors" href="tel:+33648162603">06 48 16 26 03</a></p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<span class="material-symbols-outlined text-bronze p-3 bg-surface-container rounded-full">mail</span>
+<div>
+<h4 class="font-bold text-primary mb-1">E-mail</h4>
+<p class="text-on-surface-variant"><a class="hover:text-bronze transition-colors" href="mailto:france.batica@gmail.com">france.batica@gmail.com</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 reveal active" style="transition-delay: 200ms;">
+<form action="https://formspree.io/f/xnjelwvq" method="POST" enctype="multipart/form-data" class="bg-surface-container-low p-10 md:p-12 rounded-xl shadow-lg border border-outline-variant/30" id="devis-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-secondary">Nom complet *</label>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="Nom complet" placeholder="Votre nom" required="" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-secondary">E-mail *</label>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="_replyto" placeholder="votre@email.com" required="" type="email"/>
+</div>
+</div>
+<div class="space-y-2 mb-8">
+<label class="font-label-caps text-label-caps text-secondary">Téléphone *</label>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="Téléphone" placeholder="06 00 00 00 00" required="" type="tel"/>
+</div>
+<div class="space-y-2 mb-8">
+<label class="font-label-caps text-label-caps text-secondary">Votre message</label>
+<textarea class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none resize-none" name="Message" placeholder="Décrivez votre projet..." rows="4"></textarea>
+</div>
+<div class="space-y-2 mb-10">
+<label class="font-label-caps text-label-caps text-secondary">Joindre un fichier (photo, plan...)</label>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="Pièce jointe" type="file"/>
+</div>
+<input autocomplete="off" name="_gotcha" style="display:none" tabindex="-1" type="text"/>
+<input name="_subject" type="hidden" value="Nouvelle demande de devis - BATI-CA FRANCE"/>
+<button class="w-full bg-primary text-on-primary py-5 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300" type="submit">
+                                Envoyer la demande de devis
+                            </button>
+<p class="hidden mt-4 text-center text-sm text-green-700" id="devis-form-success">Merci, votre demande a bien été envoyée !</p>
+<p class="hidden mt-4 text-center text-sm text-red-700" id="devis-form-error">Une erreur est survenue, merci de réessayer ou de nous appeler directement.</p>
+</form>
+<script>
+    (function () {
+        var form = document.getElementById('devis-form');
+        var success = document.getElementById('devis-form-success');
+        var error = document.getElementById('devis-form-error');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            success.classList.add('hidden');
+            error.classList.add('hidden');
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function (response) {
+                if (response.ok) {
+                    success.classList.remove('hidden');
+                    form.reset();
+                } else {
+                    error.classList.remove('hidden');
+                }
+            }).catch(function () {
+                error.classList.remove('hidden');
+            });
+        });
+    })();
+</script>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest py-section-padding-desktop">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter border-b border-outline-variant/30 pb-20 mb-10">
+<div class="md:col-span-4">
+<div class="flex items-center gap-4 mb-6">
+<img alt="BATI-CA FRANCE Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<span class="font-headline-md text-headline-md font-bold text-primary">BATI-CA FRANCE</span>
+</div>
+<p class="text-on-surface-variant font-body-md max-w-sm">
+                        L'expert de confiance pour vos projets de ravalement et rénovation immobilière. Qualité garantie et respect des délais avec une entreprise familiale Belfortaine.
+                    </p>
 </div>
 <div class="md:col-span-2 md:col-start-6">
-<h3 class="font-label-caps text-label-caps text-primary mb-6">Services</h3>
-<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Ravalement</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Joint de pierre</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Enduit sur neuf</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Nettoyage</a></li>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">LIENS UTILES</h5>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class=""><a class="hover:text-primary transition-colors" href="#accueil">Accueil</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#propos">À Propos</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="realisations.html">Réalisations</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#contact">Contact</a></li>
 </ul>
 </div>
 <div class="md:col-span-2">
-<h3 class="font-label-caps text-label-caps text-primary mb-6">Entreprise</h3>
-<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
-<li><a class="hover:text-primary transition-colors" href="index.html#propos">À Propos</a></li>
-<li><a class="font-bold text-primary" href="realisations.html">Réalisations</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Contact</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Recrutement</a></li>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">LÉGAL</h5>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class=""><a class="hover:text-primary transition-colors" href="mentions-legales.html">Mentions Légales</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a></li>
 </ul>
 </div>
 <div class="md:col-span-3">
-<h3 class="font-label-caps text-label-caps text-primary mb-6">Contact</h3>
-<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
-<li class="flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">location_on</span>
-                        5 rue de Bruxelles, 90000 Belfort
-                    </li>
-<li class="flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">phone</span>
-<a class="hover:text-primary transition-colors" href="tel:+33648162603">06 48 16 26 03</a>
-</li>
-<li class="flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">mail</span>
-<a class="hover:text-primary transition-colors" href="mailto:france.batica@gmail.com">france.batica@gmail.com</a>
-</li>
-</ul>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">NEWSLETTER</h5>
+<p class="text-on-surface-variant mb-6 text-sm">Recevez nos conseils et actualités sur la rénovation.</p>
+<div class="flex">
+<input class="bg-white border border-outline-variant rounded-l-lg px-4 py-3 w-full focus:ring-0 focus:border-primary" placeholder="Votre email" type="email"/>
+<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-bronze transition-colors" aria-label="S'inscrire à la newsletter">
+<span class="material-symbols-outlined">send</span>
+</button>
 </div>
 </div>
-<div class="border-t border-outline-variant py-8">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
-<span class="font-label-caps text-label-caps text-on-surface-variant">© 2026 BATI-CA FRANCE. Tous droits réservés.</span>
-<div class="flex gap-6 font-label-caps text-label-caps text-on-surface-variant">
-<a class="hover:text-primary transition-colors" href="mentions-legales.html">Mentions Légales</a>
-<a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-on-surface-variant text-sm">© 2026 BATI-CA FRANCE. Tous droits réservés.</p>
+<div class="flex gap-8">
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-body-md text-sm" href="https://share.google/lSIS2s6g5fnpIzuVx" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-base">star</span>
+Notre page Google
+</a>
 </div>
 </div>
 </div>
 </footer>
+<script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
 
-<!-- Bandeau cookies -->
-<div class="fixed bottom-0 left-0 w-full z-50 p-6 md:px-gutter py-8 bg-primary-container text-white shadow-lg" id="cookie-banner">
+        // Menu mobile : ouverture / fermeture
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('mobile-menu-icon');
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuIcon.textContent = 'menu';
+        }
+
+        menuToggle.addEventListener('click', function () {
+            const isOpen = mobileMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuIcon.textContent = isOpen ? 'close' : 'menu';
+        });
+
+        // Smooth Scroll pour les liens internes + fermeture menu mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') { closeMobileMenu(); return; }
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.pushState(null, '', targetId);
+                }
+                closeMobileMenu();
+            });
+        });
+    </script>
+<div class="fixed bottom-0 left-0 w-full z-50 p-6 md:px-gutter md:py-8 bg-primary-container text-on-primary shadow-lg transform transition-transform duration-500" id="cookie-banner">
 <div class="max-w-container-max mx-auto" id="cookie-simple-view">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="flex-1">
-<p class="font-headline-md text-lg md:text-xl mb-0">
-        Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site.
-      </p>
+<p class="font-headline-md text-lg md:text-xl mb-2">Gestion des cookies</p>
+<p class="font-body-md text-on-primary-container">Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site.</p>
 </div>
 <div class="flex gap-4 shrink-0">
-<button class="bg-bronze text-white px-8 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300" id="cookie-accept-all">
-        Accepter
-      </button>
-<button class="border border-white text-white px-8 py-3 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300" id="cookie-open-settings">
-        Personnaliser
-      </button>
+<button class="font-button text-button border border-white/50 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors" id="cookie-open-settings">Personnaliser</button>
+<button class="font-button text-button bg-bronze text-white px-8 py-3 rounded-lg hover:bg-white hover:text-primary transition-all" id="cookie-accept-all">Accepter</button>
 </div>
 </div>
 </div>
@@ -676,111 +831,30 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
 <div>
 <p class="font-bold mb-1">Cookies nécessaires</p>
-<p class="text-sm text-white/80">Indispensables au bon fonctionnement du site. Toujours actifs.</p>
+<p class="text-sm text-on-primary-container">Indispensables au bon fonctionnement du site. Toujours actifs.</p>
 </div>
 <input checked="" class="w-5 h-5 shrink-0" disabled="" type="checkbox"/>
 </div>
 <div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
 <div>
 <p class="font-bold mb-1">Cookies de mesure d'audience</p>
-<p class="text-sm text-white/80">Nous aident à comprendre la fréquentation du site.</p>
+<p class="text-sm text-on-primary-container">Nous aident à comprendre la fréquentation du site.</p>
 </div>
 <input checked="" class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
 </div>
 <div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
 <div>
 <p class="font-bold mb-1">Cookies marketing</p>
-<p class="text-sm text-white/80">Utilisés pour personnaliser d'éventuelles publicités.</p>
+<p class="text-sm text-on-primary-container">Utilisés pour personnaliser d'éventuelles publicités.</p>
 </div>
 <input class="w-5 h-5 shrink-0" id="cookie-marketing" type="checkbox"/>
 </div>
 </div>
 <div class="flex flex-col sm:flex-row gap-4">
-<button class="border border-white text-white px-6 py-3 rounded-lg font-button text-button hover:bg-white/10 transition-colors" id="cookie-refuse-all">Tout refuser</button>
-<button class="bg-bronze text-white px-8 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300" id="cookie-save-settings">Enregistrer mes choix</button>
+<button class="font-button text-button border border-white/50 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors" id="cookie-refuse-all">Tout refuser</button>
+<button class="font-button text-button bg-bronze text-white px-8 py-3 rounded-lg hover:bg-white hover:text-primary transition-all" id="cookie-save-settings">Enregistrer mes choix</button>
 </div>
 </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    /* ---------- Apparition au défilement ---------- */
-    var revealElements = document.querySelectorAll('.reveal');
-    function revealOnScroll() {
-        var windowHeight = window.innerHeight;
-        revealElements.forEach(function (el) {
-            if (el.offsetParent === null) return;
-            if (el.getBoundingClientRect().top < windowHeight - 100) {
-                el.classList.add('active');
-            }
-        });
-    }
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('resize', revealOnScroll);
-    revealOnScroll();
-
-    /* ---------- Menu mobile ---------- */
-    var menuToggle = document.getElementById('mobile-menu-toggle');
-    var mobileMenu = document.getElementById('mobile-menu');
-    var menuIcon = document.getElementById('mobile-menu-icon');
-    if (menuToggle && mobileMenu && menuIcon) {
-        menuToggle.addEventListener('click', function () {
-            var isOpen = mobileMenu.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            menuIcon.textContent = isOpen ? 'close' : 'menu';
-        });
-        mobileMenu.querySelectorAll('a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                mobileMenu.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuIcon.textContent = 'menu';
-            });
-        });
-    }
-
-    /* ---------- Curseurs glissants avant / après ---------- */
-    document.querySelectorAll('[data-ba-slider]').forEach(function (slider) {
-        var range  = slider.querySelector('.ba-range');
-        var before = slider.querySelector('.ba-before');
-        var handle = slider.querySelector('.ba-handle');
-        if (!range || !before || !handle) return;
-        function update() {
-            var v = range.value;
-            before.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
-            handle.style.left = v + '%';
-        }
-        range.addEventListener('input', update);
-        update();
-    });
-
-    /* ---------- Filtres ---------- */
-    var chips = document.querySelectorAll('.filter-chip');
-    var cards = document.querySelectorAll('.project-card');
-    var emptyState = document.getElementById('empty-state');
-
-    chips.forEach(function (chip) {
-        chip.addEventListener('click', function () {
-            var filter = chip.dataset.filter;
-            var visible = 0;
-
-            chips.forEach(function (c) {
-                var on = (c === chip);
-                c.classList.toggle('is-active', on);
-                c.setAttribute('aria-pressed', on ? 'true' : 'false');
-            });
-
-            cards.forEach(function (card) {
-                var show = (filter === 'tous') || (card.dataset.category === filter);
-                card.classList.toggle('hidden', !show);
-                if (show) visible++;
-            });
-
-            if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
-            revealOnScroll();
-        });
-    });
-});
-</script>
 <script src="cookie-consent.js"></script>
 </body></html>
