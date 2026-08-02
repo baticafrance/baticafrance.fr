@@ -174,7 +174,95 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<script src="/suivi-google.js"></script>
+<script>
+/* ===== BATI-CA FRANCE - Suivi Google Analytics 4 + Google Ads =====
+   A FAIRE : remplacer les deux etiquettes ci-dessous par celles
+   fournies par Google Ads (menu Objectifs > Conversions). */
+
+var GA4_ID = 'G-9TTMF71Y4E';
+var ADS_ID = 'AW-9471737874';
+var CONV_DEVIS     = ADS_ID + '/COLLER_ETIQUETTE_DEVIS_ICI';
+var CONV_TELEPHONE = ADS_ID + '/COLLER_ETIQUETTE_TELEPHONE_ICI';
+var CLE_MEMOIRE = 'batica-consentement';
+
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+
+gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': 500
+});
+
+gtag('js', new Date());
+gtag('config', GA4_ID, { 'anonymize_ip': true });
+gtag('config', ADS_ID);
+
+function majConsentement(mesure, marketing, memoriser) {
+    gtag('consent', 'update', {
+        'analytics_storage': mesure ? 'granted' : 'denied',
+        'ad_storage': marketing ? 'granted' : 'denied',
+        'ad_user_data': marketing ? 'granted' : 'denied',
+        'ad_personalization': marketing ? 'granted' : 'denied'
+    });
+    if (memoriser) {
+        try {
+            localStorage.setItem(CLE_MEMOIRE, JSON.stringify({ mesure: mesure, marketing: marketing }));
+        } catch (e) {}
+    }
+}
+
+(function () {
+    try {
+        var memoire = localStorage.getItem(CLE_MEMOIRE);
+        if (!memoire) return;
+        var choix = JSON.parse(memoire);
+        majConsentement(!!choix.mesure, !!choix.marketing, false);
+    } catch (e) {}
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    var bAccept = document.getElementById('cookie-accept-all');
+    if (bAccept) bAccept.addEventListener('click', function () { majConsentement(true, true, true); });
+
+    var bRefus = document.getElementById('cookie-refuse-all');
+    if (bRefus) bRefus.addEventListener('click', function () { majConsentement(false, false, true); });
+
+    var bSave = document.getElementById('cookie-save-settings');
+    if (bSave) bSave.addEventListener('click', function () {
+        var cm = document.getElementById('cookie-stats');
+        var ck = document.getElementById('cookie-marketing');
+        majConsentement(cm ? cm.checked : false, ck ? ck.checked : false, true);
+    });
+
+    var succes = document.getElementById('devis-form-success');
+    if (succes && typeof MutationObserver !== 'undefined') {
+        var compte = false;
+        new MutationObserver(function () {
+            if (compte || succes.classList.contains('hidden')) return;
+            compte = true;
+            gtag('event', 'conversion', { 'send_to': CONV_DEVIS });
+            gtag('event', 'generate_lead', { 'event_category': 'formulaire', 'event_label': 'demande de devis' });
+        }).observe(succes, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (lien) {
+        lien.addEventListener('click', function () {
+            gtag('event', 'conversion', { 'send_to': CONV_TELEPHONE });
+            gtag('event', 'clic_telephone', { 'event_category': 'contact', 'event_label': 'appel direct' });
+        });
+    });
+
+    document.querySelectorAll('a[href*="realisations.html"]').forEach(function (lien) {
+        lien.addEventListener('click', function () {
+            gtag('event', 'voir_realisations', { 'event_category': 'navigation' });
+        });
+    });
+});
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TTMF71Y4E"></script>
 </head>
 <body class="bg-background text-on-background font-body-md">
