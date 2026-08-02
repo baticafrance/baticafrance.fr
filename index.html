@@ -277,16 +277,30 @@ document.addEventListener('DOMContentLoaded', function () {
 <img alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
 <span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
 </div>
-<nav class="hidden md:flex gap-8 items-center">
+<nav class="hidden md:flex gap-6 items-center">
 <a class="nav-link font-button text-button text-primary border-b-2 border-primary pb-1" href="#accueil">Accueil</a>
 <a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="#propos">À Propos</a>
+<div class="relative group">
+<button type="button" class="nav-link font-button text-button text-secondary hover:text-primary transition-colors flex items-center gap-1" aria-haspopup="true">
+                    Prestations <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<div class="absolute left-1/2 -translate-x-1/2 top-full pt-5 hidden group-hover:block group-focus-within:block z-50">
+<div class="bg-white rounded-xl shadow-[0px_16px_40px_rgba(0,0,0,0.12)] border border-outline-variant/30 py-3 w-[280px]">
+<a class="block px-6 py-3 font-body-md text-[15px] text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="ravalement-facade.html">Ravalement de façade</a>
+<a class="block px-6 py-3 font-body-md text-[15px] text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="crepi-enduit-rpe.html">Crépi et enduit RPE</a>
+<a class="block px-6 py-3 font-body-md text-[15px] text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="enduit-monocouche.html">Enduit monocouche</a>
+<a class="block px-6 py-3 font-body-md text-[15px] text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="isolation-exterieure.html">Isolation par l'extérieur</a>
+<a class="block px-6 py-3 font-body-md text-[15px] text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" href="joint-de-pierre.html">Joint de pierre</a>
+</div>
+</div>
+</div>
 <a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="realisations.html">Réalisations</a>
 <a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="#temoignages">Témoignages</a>
 <a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="#contact">Contact</a>
 </nav>
-<a class="hidden md:block bg-primary text-on-primary px-8 py-4 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300 transform hover:-translate-y-1" href="#contact">
-                Devis Gratuit
-            </a>
+<a class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-6 py-4 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300 transform hover:-translate-y-1" href="tel:+33648162603" aria-label="Appeler BATI-CA FRANCE au 06 48 16 26 03">
+<span class="material-symbols-outlined text-[20px]">call</span>06 48 16 26 03
+</a>
 <button class="md:hidden text-primary" id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
 <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
 </button>
@@ -294,10 +308,17 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="md:hidden flex-col gap-1 px-margin-mobile pb-6 bg-background border-t border-outline-variant/30" id="mobile-menu">
 <a class="nav-link font-button text-button text-primary py-3" href="#accueil">Accueil</a>
 <a class="nav-link font-button text-button text-secondary py-3" href="#propos">À Propos</a>
+<p class="font-label-caps text-label-caps text-bronze pt-4 pb-1">NOS PRESTATIONS</p>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="ravalement-facade.html">Ravalement de façade</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="crepi-enduit-rpe.html">Crépi et enduit RPE</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="enduit-monocouche.html">Enduit monocouche</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="isolation-exterieure.html">Isolation par l'extérieur</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="joint-de-pierre.html">Joint de pierre</a>
+<p class="pt-3"></p>
 <a class="nav-link font-button text-button text-secondary py-3" href="realisations.html">Réalisations</a>
 <a class="nav-link font-button text-button text-secondary py-3" href="#temoignages">Témoignages</a>
 <a class="nav-link font-button text-button text-secondary py-3" href="#contact">Contact</a>
-<a class="bg-primary text-on-primary px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="#contact">Devis Gratuit</a>
+<a class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="tel:+33648162603"><span class="material-symbols-outlined text-[20px]">call</span>06 48 16 26 03</a>
 </div>
 </header>
 <main>
