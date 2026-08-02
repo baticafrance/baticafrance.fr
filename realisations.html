@@ -306,17 +306,17 @@ document.addEventListener('DOMContentLoaded', function () {
 </head>
 <body class="bg-background text-on-background font-body-md">
 <!-- TopNavBar -->
-<header class="sticky top-0 w-full z-50 bg-background/95 dark:bg-background/95 backdrop-blur-md shadow-sm">
-<nav class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
-<a class="flex items-center gap-3" href="index.html">
-<img alt="Logo BATI-CA FRANCE" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
-<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed uppercase">BATI-CA FRANCE</span>
+<header class="sticky top-0 w-full z-50 bg-background/95 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
+<a class="flex items-center gap-4" href="index.html">
+<img alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
 </a>
-<div class="hidden md:flex items-center gap-6">
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#accueil">Accueil</a>
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#propos">À Propos</a>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#accueil">Accueil</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#propos">À Propos</a>
 <div class="relative group">
-<button type="button" class="font-button text-button text-secondary hover:text-primary transition-colors flex items-center gap-1" aria-haspopup="true">
+<button type="button" class="nav-link font-button text-button text-secondary hover:text-primary transition-colors flex items-center gap-1" aria-haspopup="true">
                     Prestations <span class="material-symbols-outlined text-[18px]">expand_more</span>
 </button>
 <div class="absolute left-1/2 -translate-x-1/2 top-full pt-5 hidden group-hover:block group-focus-within:block z-50">
@@ -329,31 +329,31 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
 </div>
-<a class="font-button text-button text-primary border-b-2 border-primary pb-1" href="realisations.html">Réalisations</a>
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#temoignages">Témoignages</a>
-<a class="font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#contact">Contact</a>
-</div>
-<a class="hidden md:flex items-center gap-2 bg-bronze text-white px-6 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300 transform hover:translate-y-[-2px]" href="tel:+33648162603" aria-label="Appeler BATI-CA FRANCE au 06 48 16 26 03">
+<a class="nav-link font-button text-button text-primary border-b-2 border-primary pb-1" href="realisations.html">Réalisations</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#temoignages">Témoignages</a>
+<a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#contact">Contact</a>
+</nav>
+<a class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-6 py-4 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300 transform hover:-translate-y-1" href="tel:+33648162603" aria-label="Appeler BATI-CA FRANCE au 06 48 16 26 03">
 <span class="material-symbols-outlined text-[20px]">call</span>06 48 16 26 03
 </a>
-<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="md:hidden text-primary" id="mobile-menu-toggle">
+<button class="md:hidden text-primary" id="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
 <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
 </button>
-</nav>
+</div>
 <div class="md:hidden flex-col gap-1 px-margin-mobile pb-6 bg-background border-t border-outline-variant/30" id="mobile-menu">
-<a class="font-button text-button text-secondary py-3" href="index.html#accueil">Accueil</a>
-<a class="font-button text-button text-secondary py-3" href="index.html#propos">À Propos</a>
+<a class="nav-link font-button text-button text-primary py-3" href="index.html#accueil">Accueil</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="index.html#propos">À Propos</a>
 <p class="font-label-caps text-label-caps text-bronze pt-4 pb-1">NOS PRESTATIONS</p>
-<a class="font-body-md text-[15px] text-secondary py-2 pl-3" href="ravalement-facade.html">Ravalement de façade</a>
-<a class="font-body-md text-[15px] text-secondary py-2 pl-3" href="crepi-enduit-rpe.html">Crépi et enduit RPE</a>
-<a class="font-body-md text-[15px] text-secondary py-2 pl-3" href="enduit-monocouche.html">Enduit monocouche</a>
-<a class="font-body-md text-[15px] text-secondary py-2 pl-3" href="isolation-exterieure.html">Isolation par l'extérieur</a>
-<a class="font-body-md text-[15px] text-secondary py-2 pl-3" href="joint-de-pierre.html">Joint de pierre</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="ravalement-facade.html">Ravalement de façade</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="crepi-enduit-rpe.html">Crépi et enduit RPE</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="enduit-monocouche.html">Enduit monocouche</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="isolation-exterieure.html">Isolation par l'extérieur</a>
+<a class="nav-link font-body-md text-[15px] text-secondary py-2 pl-3" href="joint-de-pierre.html">Joint de pierre</a>
 <p class="pt-3"></p>
-<a class="font-button text-button text-primary py-3" href="realisations.html">Réalisations</a>
-<a class="font-button text-button text-secondary py-3" href="index.html#temoignages">Témoignages</a>
-<a class="font-button text-button text-secondary py-3" href="index.html#contact">Contact</a>
-<a class="flex items-center justify-center gap-2 bg-bronze text-white px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="tel:+33648162603"><span class="material-symbols-outlined text-[20px]">call</span>06 48 16 26 03</a>
+<a class="nav-link font-button text-button text-primary font-bold py-3" href="realisations.html">Réalisations</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="index.html#temoignages">Témoignages</a>
+<a class="nav-link font-button text-button text-secondary py-3" href="index.html#contact">Contact</a>
+<a class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-lg font-button text-button text-center mt-2" href="tel:+33648162603"><span class="material-symbols-outlined text-[20px]">call</span>06 48 16 26 03</a>
 </div>
 </header>
 
