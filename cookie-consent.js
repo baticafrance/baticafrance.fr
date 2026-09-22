@@ -1,40 +1,51 @@
 // Gestion du consentement cookies - BATI-CA FRANCE
 (function () {
-    const STORAGE_KEY = 'bati_ca_cookie_consent';
+    var STORAGE_KEY = 'batica-consentement'; // meme cle que le script de suivi dans le <head>
 
     function getConsent() {
         try {
-            const raw = localStorage.getItem(STORAGE_KEY);
+            var raw = localStorage.getItem(STORAGE_KEY);
             return raw ? JSON.parse(raw) : null;
         } catch (e) {
             return null;
         }
     }
 
-    function saveConsent(consent) {
+    function saveConsent(mesure, marketing) {
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ mesure: mesure, marketing: marketing }));
         } catch (e) { /* localStorage indisponible, on ignore */ }
+
+        // Confirme aussi directement a Google, au cas ou le script de suivi
+        // du <head> ne serait pas present sur cette page.
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                'analytics_storage': mesure ? 'granted' : 'denied',
+                'ad_storage': marketing ? 'granted' : 'denied',
+                'ad_user_data': marketing ? 'granted' : 'denied',
+                'ad_personalization': marketing ? 'granted' : 'denied'
+            });
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const banner = document.getElementById('cookie-banner');
+        var banner = document.getElementById('cookie-banner');
         if (!banner) return;
 
-        // Si un choix a déjà été enregistré, on ne montre pas la bannière
+        // Si un choix a deja ete enregistre, on ne montre pas la banniere
         if (getConsent()) {
             banner.remove();
             return;
         }
 
-        const simpleView = document.getElementById('cookie-simple-view');
-        const settingsView = document.getElementById('cookie-settings-view');
-        const openSettingsBtn = document.getElementById('cookie-open-settings');
-        const acceptAllBtn = document.getElementById('cookie-accept-all');
-        const saveSettingsBtn = document.getElementById('cookie-save-settings');
-        const refuseAllBtn = document.getElementById('cookie-refuse-all');
-        const statsCheckbox = document.getElementById('cookie-stats');
-        const marketingCheckbox = document.getElementById('cookie-marketing');
+        var simpleView = document.getElementById('cookie-simple-view');
+        var settingsView = document.getElementById('cookie-settings-view');
+        var openSettingsBtn = document.getElementById('cookie-open-settings');
+        var acceptAllBtn = document.getElementById('cookie-accept-all');
+        var saveSettingsBtn = document.getElementById('cookie-save-settings');
+        var refuseAllBtn = document.getElementById('cookie-refuse-all');
+        var statsCheckbox = document.getElementById('cookie-stats');
+        var marketingCheckbox = document.getElementById('cookie-marketing');
 
         function closeBanner() {
             banner.remove();
@@ -49,26 +60,23 @@
 
         if (acceptAllBtn) {
             acceptAllBtn.addEventListener('click', function () {
-                saveConsent({ necessary: true, stats: true, marketing: true, date: new Date().toISOString() });
+                saveConsent(true, true);
                 closeBanner();
             });
         }
 
         if (saveSettingsBtn) {
             saveSettingsBtn.addEventListener('click', function () {
-                saveConsent({
-                    necessary: true,
-                    stats: statsCheckbox ? statsCheckbox.checked : false,
-                    marketing: marketingCheckbox ? marketingCheckbox.checked : false,
-                    date: new Date().toISOString()
-                });
+                var mesure = statsCheckbox ? statsCheckbox.checked : false;
+                var marketing = marketingCheckbox ? marketingCheckbox.checked : false;
+                saveConsent(mesure, marketing);
                 closeBanner();
             });
         }
 
         if (refuseAllBtn) {
             refuseAllBtn.addEventListener('click', function () {
-                saveConsent({ necessary: true, stats: false, marketing: false, date: new Date().toISOString() });
+                saveConsent(false, false);
                 closeBanner();
             });
         }
