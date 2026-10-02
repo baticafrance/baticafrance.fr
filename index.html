@@ -700,31 +700,29 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
 <div class="md:col-span-7 reveal active" style="transition-delay: 200ms;">
-<form action="https://formspree.io/f/xnjelwvq" method="POST" enctype="multipart/form-data" class="bg-surface-container-low p-10 md:p-12 rounded-xl shadow-lg border border-outline-variant/30" id="devis-form">
+<form action="https://forminit.com/f/57fm41kss0j" method="POST" enctype="multipart/form-data" class="bg-surface-container-low p-10 md:p-12 rounded-xl shadow-lg border border-outline-variant/30" id="devis-form">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
 <div class="space-y-2">
 <label class="font-label-caps text-label-caps text-secondary">Nom complet *</label>
-<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="Nom complet" placeholder="Votre nom" required="" type="text"/>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="fi-text-nom" placeholder="Votre nom" required="" type="text"/>
 </div>
 <div class="space-y-2">
 <label class="font-label-caps text-label-caps text-secondary">E-mail *</label>
-<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="_replyto" placeholder="votre@email.com" required="" type="email"/>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="fi-sender-email" placeholder="votre@email.com" required="" type="email"/>
 </div>
 </div>
 <div class="space-y-2 mb-8">
 <label class="font-label-caps text-label-caps text-secondary">Téléphone *</label>
-<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="Téléphone" placeholder="06 00 00 00 00" required="" type="tel"/>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="fi-sender-phone" placeholder="06 00 00 00 00" required="" type="tel"/>
 </div>
 <div class="space-y-2 mb-8">
 <label class="font-label-caps text-label-caps text-secondary">Votre message</label>
-<textarea class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none resize-none" name="Message" placeholder="Décrivez votre projet..." rows="4"></textarea>
+<textarea class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none resize-none" name="fi-text-message" placeholder="Décrivez votre projet..." rows="4"></textarea>
 </div>
 <div class="space-y-2 mb-10">
 <label class="font-label-caps text-label-caps text-secondary">Joindre un fichier (photo, plan...)</label>
-<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="Pièce jointe" type="file"/>
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-3 transition-colors outline-none" name="fi-file-piece-jointe" type="file"/>
 </div>
-<input autocomplete="off" name="_gotcha" style="display:none" tabindex="-1" type="text"/>
-<input name="_subject" type="hidden" value="Nouvelle demande de devis - BATI-CA FRANCE"/>
 <button class="w-full bg-primary text-on-primary py-5 rounded-lg font-button text-button hover:bg-bronze transition-all duration-300" type="submit">
                                 Envoyer la demande de devis
                             </button>
