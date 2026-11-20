@@ -5,7 +5,11 @@
     function getConsent() {
         try {
             var raw = localStorage.getItem(STORAGE_KEY);
-            return raw ? JSON.parse(raw) : null;
+            if (!raw) return null;
+            var choix = JSON.parse(raw);
+            // Le choix est redemande apres 6 mois
+            if (!choix.date || Date.now() - choix.date > 15552000000) return null;
+            return choix;
         } catch (e) {
             return null;
         }
@@ -13,7 +17,7 @@
 
     function saveConsent(mesure, marketing) {
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ mesure: mesure, marketing: marketing }));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ mesure: mesure, marketing: marketing, date: Date.now() }));
         } catch (e) { /* localStorage indisponible, on ignore */ }
 
         // Confirme aussi directement a Google, au cas ou le script de suivi
@@ -32,12 +36,6 @@
         var banner = document.getElementById('cookie-banner');
         if (!banner) return;
 
-        // Si un choix a deja ete enregistre, on ne montre pas la banniere
-        if (getConsent()) {
-            banner.remove();
-            return;
-        }
-
         var simpleView = document.getElementById('cookie-simple-view');
         var settingsView = document.getElementById('cookie-settings-view');
         var openSettingsBtn = document.getElementById('cookie-open-settings');
@@ -48,7 +46,31 @@
         var marketingCheckbox = document.getElementById('cookie-marketing');
 
         function closeBanner() {
-            banner.remove();
+            banner.style.display = 'none';
+        }
+
+        // Si un choix a deja ete enregistre, on ne montre pas la banniere
+        var choixActuel = getConsent();
+        if (choixActuel) closeBanner();
+
+        // Lien Gerer les cookies : rouvre les preferences a tout moment
+        document.querySelectorAll('[data-cookie-manage]').forEach(function (lien) {
+            lien.addEventListener('click', function () {
+                var choix = getConsent();
+                if (statsCheckbox) statsCheckbox.checked = !!(choix && choix.mesure);
+                if (marketingCheckbox) marketingCheckbox.checked = !!(choix && choix.marketing);
+                simpleView.classList.add('hidden');
+                settingsView.classList.remove('hidden');
+                banner.style.display = '';
+            });
+        });
+
+        var refuseSimpleBtn = document.getElementById('cookie-refuse-simple');
+        if (refuseSimpleBtn) {
+            refuseSimpleBtn.addEventListener('click', function () {
+                saveConsent(false, false);
+                closeBanner();
+            });
         }
 
         if (openSettingsBtn) {

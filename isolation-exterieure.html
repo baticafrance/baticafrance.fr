@@ -3,8 +3,15 @@
 <html class="scroll-smooth" lang="fr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Isolation thermique par l'extérieur à Belfort | ITE et ravalement | BATI-CA FRANCE</title>
+<title>Isolation par l'extérieur à Belfort | BATI-CA FRANCE</title>
 <meta content="Isolation par l'extérieur à Belfort et Nord Franche-Comté. Système ETICS sous enduit, choix de l'isolant, obligations lors d'un ravalement. Devis gratuit." name="description"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:site_name" content="BATI-CA FRANCE"/>
+<meta property="og:title" content="Isolation par l'extérieur à Belfort | BATI-CA FRANCE"/>
+<meta property="og:description" content="Isolation par l'extérieur à Belfort et Nord Franche-Comté. Système ETICS sous enduit, choix de l'isolant, obligations lors d'un ravalement. Devis gratuit."/>
+<meta property="og:url" content="https://baticafrance.fr/isolation-exterieure.html"/>
+<meta property="og:image" content="https://baticafrance.fr/android-chrome-512x512.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -165,7 +172,18 @@ gtag('js', new Date());
 gtag('config', GA4_ID, { 'anonymize_ip': true });
 gtag('config', ADS_ID);
 
+var googleCharge = false;
+function chargerGoogle() {
+    if (googleCharge) return;
+    googleCharge = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(s);
+}
+
 function majConsentement(mesure, marketing, memoriser) {
+    if (mesure || marketing) chargerGoogle();
     gtag('consent', 'update', {
         'analytics_storage': mesure ? 'granted' : 'denied',
         'ad_storage': marketing ? 'granted' : 'denied',
@@ -174,7 +192,7 @@ function majConsentement(mesure, marketing, memoriser) {
     });
     if (memoriser) {
         try {
-            localStorage.setItem(CLE_MEMOIRE, JSON.stringify({ mesure: mesure, marketing: marketing }));
+            localStorage.setItem(CLE_MEMOIRE, JSON.stringify({ mesure: mesure, marketing: marketing, date: Date.now() }));
         } catch (e) {}
     }
 }
@@ -184,6 +202,7 @@ function majConsentement(mesure, marketing, memoriser) {
         var memoire = localStorage.getItem(CLE_MEMOIRE);
         if (!memoire) return;
         var choix = JSON.parse(memoire);
+        if (!choix.date || Date.now() - choix.date > 15552000000) return; // choix valable 6 mois
         majConsentement(!!choix.mesure, !!choix.marketing, false);
     } catch (e) {}
 })();
@@ -192,6 +211,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var bAccept = document.getElementById('cookie-accept-all');
     if (bAccept) bAccept.addEventListener('click', function () { majConsentement(true, true, true); });
+
+    var bRefusSimple = document.getElementById('cookie-refuse-simple');
+    if (bRefusSimple) bRefusSimple.addEventListener('click', function () { majConsentement(false, false, true); });
 
     var bRefus = document.getElementById('cookie-refuse-all');
     if (bRefus) bRefus.addEventListener('click', function () { majConsentement(false, false, true); });
@@ -209,14 +231,14 @@ document.addEventListener('DOMContentLoaded', function () {
         new MutationObserver(function () {
             if (compte || succes.classList.contains('hidden')) return;
             compte = true;
-            gtag('event', 'conversion', { 'send_to': CONV_DEVIS });
+            if (CONV_DEVIS.indexOf('COLLER_') < 0) gtag('event', 'conversion', { 'send_to': CONV_DEVIS });
             gtag('event', 'generate_lead', { 'event_category': 'formulaire', 'event_label': 'demande de devis' });
         }).observe(succes, { attributes: true, attributeFilter: ['class'] });
     }
 
     document.querySelectorAll('a[href^="tel:"]').forEach(function (lien) {
         lien.addEventListener('click', function () {
-            gtag('event', 'conversion', { 'send_to': CONV_TELEPHONE });
+            if (CONV_TELEPHONE.indexOf('COLLER_') < 0) gtag('event', 'conversion', { 'send_to': CONV_TELEPHONE });
             gtag('event', 'clic_telephone', { 'event_category': 'contact', 'event_label': 'appel direct' });
         });
     });
@@ -228,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TTMF71Y4E"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -236,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
   "@id": "https://baticafrance.fr/#entreprise",
   "name": "BATI-CA FRANCE",
   "alternateName": "Bati-Ca France",
-  "description": "Entreprise familiale de ravalement de facade, crepi, enduit sur neuf, isolation thermique par l'exterieur et reprise de joints de pierre a Belfort et dans le Nord Franche-Comte.",
+  "description": "Entreprise familiale de ravalement de façade, crépi, enduit sur neuf, isolation thermique par l'extérieur et reprise de joints de pierre à Belfort et dans le Nord Franche-Comté.",
   "url": "https://baticafrance.fr/",
   "telephone": "+33648162603",
   "email": "france.batica@gmail.com",
@@ -245,23 +266,23 @@ document.addEventListener('DOMContentLoaded', function () {
     "streetAddress": "5 rue de Bruxelles",
     "postalCode": "90000",
     "addressLocality": "Belfort",
-    "addressRegion": "Bourgogne-Franche-Comte",
+    "addressRegion": "Bourgogne-Franche-Comté",
     "addressCountry": "FR"
   },
   "areaServed": [
     { "@type": "City", "name": "Belfort" },
-    { "@type": "City", "name": "Montbeliard" },
-    { "@type": "City", "name": "Hericourt" },
+    { "@type": "City", "name": "Montbéliard" },
+    { "@type": "City", "name": "Héricourt" },
     { "@type": "City", "name": "Delle" },
     { "@type": "City", "name": "Giromagny" },
     { "@type": "AdministrativeArea", "name": "Territoire de Belfort" }
   ],
   "knowsAbout": [
-    "Ravalement de facade",
-    "Crepi et enduit monocouche",
-    "Isolation thermique par l'exterieur",
+    "Ravalement de façade",
+    "Crépi et enduit monocouche",
+    "Isolation thermique par l'extérieur",
     "Reprise de joints de pierre",
-    "Nettoyage et demoussage de facade"
+    "Nettoyage et démoussage de façade"
   ],
   "sameAs": [
     "https://share.google/lSIS2s6g5fnpIzuVx"
@@ -275,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
   "@type": "Service",
   "serviceType": "Isolation thermique par l'extérieur",
   "provider": { "@id": "https://baticafrance.fr/#entreprise" },
-  "areaServed": { "@type": "AdministrativeArea", "name": "Territoire de Belfort et Nord Franche-Comte" },
+  "areaServed": { "@type": "AdministrativeArea", "name": "Territoire de Belfort et Nord Franche-Comté" },
   "url": "https://baticafrance.fr/isolation-exterieure.html"
 }
 </script>
@@ -285,8 +306,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <header class="sticky top-0 w-full z-50 bg-background/95 backdrop-blur-md shadow-sm">
 <div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
 <div class="flex items-center gap-4">
-<img alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
-<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
+<img width="512" height="506" alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="images/logo.jpg"/>
+<span class="font-headline-md text-[22px] md:text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
 </div>
 <nav class="hidden md:flex gap-6 items-center">
 <a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#accueil">Accueil</a>
@@ -335,12 +356,12 @@ document.addEventListener('DOMContentLoaded', function () {
 <main>
 
 <section class="relative w-full overflow-hidden" style="min-height: 46vh;">
-<img class="absolute inset-0 w-full h-full object-cover" style="object-position: center 50%;" alt="Maison de plain-pied avec façade enduite, réalisation BATI-CA FRANCE" src="images/realisations/j-maison-plain-pied.jpg"/>
+<img width="1600" height="1200" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 50%;" alt="Maison de plain-pied avec façade enduite, réalisation BATI-CA FRANCE" src="images/realisations/j-maison-plain-pied.jpg"/>
 <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,16,16,0.9) 0%, rgba(15,16,16,0.6) 50%, rgba(15,16,16,0.25) 100%);"></div>
 <div class="relative z-10 flex items-end w-full" style="min-height: 46vh;">
 <div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-14 md:pb-16">
 <span class="font-label-caps text-label-caps text-bronze uppercase tracking-widest mb-4 block">Nos prestations</span>
-<h1 class="font-headline-lg text-headline-lg text-white mb-5 max-w-3xl">Isolation thermique par l'extérieur à Belfort</h1>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-5 max-w-3xl">Isolation thermique par l'extérieur à Belfort</h1>
 <p class="font-body-lg text-body-lg text-white/80 max-w-2xl">Isoler et ravaler en une seule opération. Comment fonctionne l'ITE, ce que la réglementation impose lors d'un ravalement, et pourquoi ce n'est pas la bonne solution pour toutes les maisons.</p>
 </div>
 </div>
@@ -476,16 +497,16 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-surface-container-low dark:bg-surface-container-lowest py-section-padding-desktop">
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest py-section-padding-mobile md:py-section-padding-desktop">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter border-b border-outline-variant/30 pb-20 mb-10">
 <div class="md:col-span-4">
 <div class="flex items-center gap-4 mb-6">
-<img alt="BATI-CA FRANCE Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<img width="512" height="506" alt="BATI-CA FRANCE Logo" class="h-10 w-auto" src="images/logo.jpg"/>
 <span class="font-headline-md text-headline-md font-bold text-primary">BATI-CA FRANCE</span>
 </div>
 <p class="text-on-surface-variant font-body-md max-w-sm">
-                        L'expert de confiance pour vos projets de ravalement et rénovation immobilière. Qualité garantie et respect des délais avec une entreprise familiale Belfortaine.
+                        Votre façadier pour vos projets de ravalement et de rénovation. Un travail soigné, réalisé par une entreprise familiale belfortaine.
                     </p>
 </div>
 <div class="md:col-span-2 md:col-start-6">
@@ -501,19 +522,10 @@ document.addEventListener('DOMContentLoaded', function () {
 <h5 class="font-label-caps text-label-caps text-primary mb-6">LÉGAL</h5>
 <ul class="space-y-4 font-body-md text-on-surface-variant">
 <li class=""><a class="hover:text-primary transition-colors" href="mentions-legales.html">Mentions Légales</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a></li><li><button class="hover:text-primary transition-colors text-left" data-cookie-manage="" type="button">Gérer les cookies</button></li>
 </ul>
 </div>
-<div class="md:col-span-3">
-<h5 class="font-label-caps text-label-caps text-primary mb-6">NEWSLETTER</h5>
-<p class="text-on-surface-variant mb-6 text-sm">Recevez nos conseils et actualités sur la rénovation.</p>
-<div class="flex">
-<input class="bg-white border border-outline-variant rounded-l-lg px-4 py-3 w-full focus:ring-0 focus:border-primary" placeholder="Votre email" type="email"/>
-<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-bronze transition-colors" aria-label="S'inscrire à la newsletter">
-<span class="material-symbols-outlined">send</span>
-</button>
-</div>
-</div>
+
 </div>
 <div class="flex flex-col md:flex-row justify-between items-center gap-6">
 <p class="text-on-surface-variant text-sm">© 2026 BATI-CA FRANCE. Tous droits réservés.</p>
@@ -579,10 +591,10 @@ Notre page Google
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="flex-1">
 <p class="font-headline-md text-lg md:text-xl mb-2">Gestion des cookies</p>
-<p class="font-body-md text-on-primary-container">Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site.</p>
+<p class="font-body-md text-on-primary-container">Avec votre accord, nous utilisons des cookies de mesure d'audience (Google Analytics) et de publicité (Google Ads). Vous pouvez accepter, refuser ou personnaliser, et changer d'avis à tout moment via « Gérer les cookies » en bas de page.</p>
 </div>
-<div class="flex gap-4 shrink-0">
-<button class="font-button text-button border border-white/50 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors" id="cookie-open-settings">Personnaliser</button>
+<div class="flex flex-wrap justify-center gap-3 shrink-0">
+<button class="font-button text-button border border-white/50 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors" id="cookie-refuse-simple">Tout refuser</button><button class="font-button text-button border border-white/50 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors" id="cookie-open-settings">Personnaliser</button>
 <button class="font-button text-button bg-bronze text-white px-8 py-3 rounded-lg hover:bg-white hover:text-primary transition-all" id="cookie-accept-all">Accepter</button>
 </div>
 </div>
@@ -602,7 +614,7 @@ Notre page Google
 <p class="font-bold mb-1">Cookies de mesure d'audience</p>
 <p class="text-sm text-on-primary-container">Nous aident à comprendre la fréquentation du site.</p>
 </div>
-<input checked="" class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
+<input class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
 </div>
 <div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
 <div>

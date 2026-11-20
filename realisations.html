@@ -3,10 +3,17 @@
 <html class="light" lang="fr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Nos Réalisations | BATI-CA FRANCE</title>
+<title>Réalisations de façades à Belfort | BATI-CA FRANCE</title>
 <meta content="Découvrez les chantiers de ravalement, d'enduit sur neuf et de joint de pierre réalisés par BATI-CA FRANCE, avec photos avant et après." name="description"/>
 <link rel="canonical" href="https://baticafrance.fr/realisations.html"/>
 <!-- Tailwind CSS -->
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:site_name" content="BATI-CA FRANCE"/>
+<meta property="og:title" content="Réalisations de façades à Belfort | BATI-CA FRANCE"/>
+<meta property="og:description" content="Découvrez les chantiers de ravalement, d'enduit sur neuf et de joint de pierre réalisés par BATI-CA FRANCE, avec photos avant et après."/>
+<meta property="og:url" content="https://baticafrance.fr/realisations.html"/>
+<meta property="og:image" content="https://baticafrance.fr/android-chrome-512x512.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts: Playfair Display for Headings, Manrope for Body -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
@@ -201,7 +208,18 @@ gtag('js', new Date());
 gtag('config', GA4_ID, { 'anonymize_ip': true });
 gtag('config', ADS_ID);
 
+var googleCharge = false;
+function chargerGoogle() {
+    if (googleCharge) return;
+    googleCharge = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(s);
+}
+
 function majConsentement(mesure, marketing, memoriser) {
+    if (mesure || marketing) chargerGoogle();
     gtag('consent', 'update', {
         'analytics_storage': mesure ? 'granted' : 'denied',
         'ad_storage': marketing ? 'granted' : 'denied',
@@ -210,7 +228,7 @@ function majConsentement(mesure, marketing, memoriser) {
     });
     if (memoriser) {
         try {
-            localStorage.setItem(CLE_MEMOIRE, JSON.stringify({ mesure: mesure, marketing: marketing }));
+            localStorage.setItem(CLE_MEMOIRE, JSON.stringify({ mesure: mesure, marketing: marketing, date: Date.now() }));
         } catch (e) {}
     }
 }
@@ -220,6 +238,7 @@ function majConsentement(mesure, marketing, memoriser) {
         var memoire = localStorage.getItem(CLE_MEMOIRE);
         if (!memoire) return;
         var choix = JSON.parse(memoire);
+        if (!choix.date || Date.now() - choix.date > 15552000000) return; // choix valable 6 mois
         majConsentement(!!choix.mesure, !!choix.marketing, false);
     } catch (e) {}
 })();
@@ -228,6 +247,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var bAccept = document.getElementById('cookie-accept-all');
     if (bAccept) bAccept.addEventListener('click', function () { majConsentement(true, true, true); });
+
+    var bRefusSimple = document.getElementById('cookie-refuse-simple');
+    if (bRefusSimple) bRefusSimple.addEventListener('click', function () { majConsentement(false, false, true); });
 
     var bRefus = document.getElementById('cookie-refuse-all');
     if (bRefus) bRefus.addEventListener('click', function () { majConsentement(false, false, true); });
@@ -245,14 +267,14 @@ document.addEventListener('DOMContentLoaded', function () {
         new MutationObserver(function () {
             if (compte || succes.classList.contains('hidden')) return;
             compte = true;
-            gtag('event', 'conversion', { 'send_to': CONV_DEVIS });
+            if (CONV_DEVIS.indexOf('COLLER_') < 0) gtag('event', 'conversion', { 'send_to': CONV_DEVIS });
             gtag('event', 'generate_lead', { 'event_category': 'formulaire', 'event_label': 'demande de devis' });
         }).observe(succes, { attributes: true, attributeFilter: ['class'] });
     }
 
     document.querySelectorAll('a[href^="tel:"]').forEach(function (lien) {
         lien.addEventListener('click', function () {
-            gtag('event', 'conversion', { 'send_to': CONV_TELEPHONE });
+            if (CONV_TELEPHONE.indexOf('COLLER_') < 0) gtag('event', 'conversion', { 'send_to': CONV_TELEPHONE });
             gtag('event', 'clic_telephone', { 'event_category': 'contact', 'event_label': 'appel direct' });
         });
     });
@@ -264,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TTMF71Y4E"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -272,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
   "@id": "https://baticafrance.fr/#entreprise",
   "name": "BATI-CA FRANCE",
   "alternateName": "Bati-Ca France",
-  "description": "Entreprise familiale de ravalement de facade, crepi, enduit sur neuf, isolation thermique par l'exterieur et reprise de joints de pierre a Belfort et dans le Nord Franche-Comte.",
+  "description": "Entreprise familiale de ravalement de façade, crépi, enduit sur neuf, isolation thermique par l'extérieur et reprise de joints de pierre à Belfort et dans le Nord Franche-Comté.",
   "url": "https://baticafrance.fr/",
   "telephone": "+33648162603",
   "email": "france.batica@gmail.com",
@@ -281,23 +302,23 @@ document.addEventListener('DOMContentLoaded', function () {
     "streetAddress": "5 rue de Bruxelles",
     "postalCode": "90000",
     "addressLocality": "Belfort",
-    "addressRegion": "Bourgogne-Franche-Comte",
+    "addressRegion": "Bourgogne-Franche-Comté",
     "addressCountry": "FR"
   },
   "areaServed": [
     { "@type": "City", "name": "Belfort" },
-    { "@type": "City", "name": "Montbeliard" },
-    { "@type": "City", "name": "Hericourt" },
+    { "@type": "City", "name": "Montbéliard" },
+    { "@type": "City", "name": "Héricourt" },
     { "@type": "City", "name": "Delle" },
     { "@type": "City", "name": "Giromagny" },
     { "@type": "AdministrativeArea", "name": "Territoire de Belfort" }
   ],
   "knowsAbout": [
-    "Ravalement de facade",
-    "Crepi et enduit monocouche",
-    "Isolation thermique par l'exterieur",
+    "Ravalement de façade",
+    "Crépi et enduit monocouche",
+    "Isolation thermique par l'extérieur",
     "Reprise de joints de pierre",
-    "Nettoyage et demoussage de facade"
+    "Nettoyage et démoussage de façade"
   ],
   "sameAs": [
     "https://share.google/lSIS2s6g5fnpIzuVx"
@@ -310,8 +331,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <header class="sticky top-0 w-full z-50 bg-background/95 backdrop-blur-md shadow-sm">
 <div class="flex justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6">
 <a class="flex items-center gap-4" href="index.html">
-<img alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
-<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
+<img width="512" height="506" alt="BATI-CA FRANCE Logo" class="h-12 w-auto" src="images/logo.jpg"/>
+<span class="font-headline-md text-[22px] md:text-headline-md font-bold tracking-tighter text-primary">BATI-CA FRANCE</span>
 </a>
 <nav class="hidden md:flex gap-6 items-center">
 <a class="nav-link font-button text-button text-secondary hover:text-primary transition-colors" href="index.html#accueil">Accueil</a>
@@ -360,12 +381,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- Hero : bandeau photo pleine largeur -->
 <section class="relative w-full overflow-hidden" style="min-height: 78vh;">
-<img class="absolute inset-0 w-full h-full object-cover" style="object-position: center 45%;" alt="Maison de plain-pied réalisée par BATI-CA FRANCE, façade enduite éclairée à la tombée du jour" src="images/realisations/j-maison-plain-pied.jpg"/>
+<img width="1600" height="1200" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 45%;" alt="Maison de plain-pied réalisée par BATI-CA FRANCE, façade enduite éclairée à la tombée du jour" src="images/realisations/j-maison-plain-pied.jpg"/>
 <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,16,16,0.88) 0%, rgba(15,16,16,0.55) 45%, rgba(15,16,16,0.15) 100%);"></div>
 <div class="relative z-10 flex items-end w-full" style="min-height: 78vh;">
 <div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-section-padding-mobile md:pb-24">
 <span class="font-label-caps text-label-caps text-bronze uppercase tracking-widest mb-5 block">Nos chantiers</span>
-<h1 class="font-headline-xl text-headline-xl text-white mb-6 max-w-3xl">Nos Réalisations</h1>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-white mb-6 max-w-3xl">Nos Réalisations</h1>
 <p class="font-body-lg text-body-lg text-white/80 max-w-xl">
                     Ravalement, enduit sur neuf, reprise de joints de pierre : chaque chantier est présenté avec ses photos avant et après, pour que vous jugiez le résultat par vous-même.
                 </p>
@@ -395,23 +416,23 @@ document.addEventListener('DOMContentLoaded', function () {
 <article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
 <div class="relative grid grid-cols-1 md:grid-cols-2">
 <div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Pignon d'une grande maison ancienne entièrement décapé avant travaux" loading="lazy" src="images/realisations/f-grande-maison-avant-01.jpg"/>
+<img width="1050" height="1400" class="w-full h-full object-cover" alt="Pignon d'une grande maison ancienne entièrement décapé avant travaux" loading="lazy" src="images/realisations/f-grande-maison-avant-01.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Le même pignon en cours de travaux, enduit terracotta fraîchement appliqué sous échafaudage" loading="lazy" src="images/realisations/f-grande-maison-pendant.jpg"/>
+<img width="1050" height="1400" class="w-full h-full object-cover" alt="Le même pignon en cours de travaux, enduit terracotta fraîchement appliqué sous échafaudage" loading="lazy" src="images/realisations/f-grande-maison-pendant.jpg"/>
 <span class="ba-tag ba-tag-left">Pendant</span>
 </div>
 <div class="relative" style="aspect-ratio: 4/3;">
-<img class="w-full h-full object-cover" alt="Le pignon terminé, vu d'angle avec la façade rénovée" loading="lazy" src="images/realisations/f-grande-maison-apres-01.jpg"/>
+<img width="1400" height="1050" class="w-full h-full object-cover" alt="Le pignon terminé, vu d'angle avec la façade rénovée" loading="lazy" src="images/realisations/f-grande-maison-apres-01.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <div class="relative" style="aspect-ratio: 4/3;">
-<img class="w-full h-full object-cover" alt="Façade sur cour de la même maison avant travaux, enduit beige encrassé" loading="lazy" src="images/realisations/f-grande-maison-avant-02.jpg"/>
+<img width="1400" height="1050" class="w-full h-full object-cover" alt="Façade sur cour de la même maison avant travaux, enduit beige encrassé" loading="lazy" src="images/realisations/f-grande-maison-avant-02.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Façade sur rue après rénovation, enduit terracotta et encadrements gris" loading="lazy" src="images/realisations/f-grande-maison-apres-02.jpg"/>
+<img width="1400" height="1050" class="w-full h-full object-cover" alt="Façade sur rue après rénovation, enduit terracotta et encadrements gris" loading="lazy" src="images/realisations/f-grande-maison-apres-02.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
@@ -428,19 +449,19 @@ document.addEventListener('DOMContentLoaded', function () {
 <article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="joint-pierre">
 <div class="relative grid grid-cols-1 md:grid-cols-2">
 <div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Façade d'une grange en pierre avant travaux, ancien enduit ciment dégradé autour du porche" loading="lazy" src="images/realisations/k-grange-pierre-avant.jpg"/>
+<img width="1500" height="844" class="w-full h-full object-cover" alt="Façade d'une grange en pierre avant travaux, ancien enduit ciment dégradé autour du porche" loading="lazy" src="images/realisations/k-grange-pierre-avant.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Décapage de la façade sous échafaudage, mise à nu de la pierre" loading="lazy" src="images/realisations/k-grange-pierre-decapage.jpg"/>
+<img width="844" height="1500" class="w-full h-full object-cover" alt="Décapage de la façade sous échafaudage, mise à nu de la pierre" loading="lazy" src="images/realisations/k-grange-pierre-decapage.jpg"/>
 <span class="ba-tag ba-tag-left">Pendant</span>
 </div>
 <div class="relative" style="aspect-ratio: 3/4;">
-<img class="w-full h-full object-cover" alt="Reprise des joints de pierre en cours, détail de la façade" loading="lazy" src="images/realisations/k-grange-pierre-joints.jpg"/>
+<img width="1500" height="844" class="w-full h-full object-cover" alt="Reprise des joints de pierre en cours, détail de la façade" loading="lazy" src="images/realisations/k-grange-pierre-joints.jpg"/>
 <span class="ba-tag ba-tag-left">Pendant</span>
 </div>
 <div class="relative md:col-span-2" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="La même façade après décapage et reprise complète des joints, pierre entièrement dégagée" loading="lazy" src="images/realisations/k-grange-pierre-apres.jpg"/>
+<img width="1500" height="844" class="w-full h-full object-cover" alt="La même façade après décapage et reprise complète des joints, pierre entièrement dégagée" loading="lazy" src="images/realisations/k-grange-pierre-apres.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Joint de pierre</span>
@@ -457,19 +478,19 @@ document.addEventListener('DOMContentLoaded', function () {
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
 <div class="ba-stack relative">
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Façade d'une maison de village avant travaux, enduit rose défraîchi et porche en cours de reprise" loading="lazy" src="images/realisations/a1-maison-village-avant.jpg"/>
+<img width="1400" height="788" alt="Façade d'une maison de village avant travaux, enduit rose défraîchi et porche en cours de reprise" loading="lazy" src="images/realisations/a1-maison-village-avant.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="La même façade après ravalement, enduit crème et encadrements orangés" loading="lazy" src="images/realisations/a1-maison-village-apres.jpg"/>
+<img width="1400" height="1050" alt="La même façade après ravalement, enduit crème et encadrements orangés" loading="lazy" src="images/realisations/a1-maison-village-apres.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Autre face de la même maison avant travaux" loading="lazy" src="images/realisations/a2-maison-ancienne-avant.jpg"/>
+<img width="1400" height="1050" alt="Autre face de la même maison avant travaux" loading="lazy" src="images/realisations/a2-maison-ancienne-avant.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Autre face de la même maison après ravalement" loading="lazy" src="images/realisations/a2-maison-ancienne-apres.jpg"/>
+<img width="1400" height="1050" alt="Autre face de la même maison après ravalement" loading="lazy" src="images/realisations/a2-maison-ancienne-apres.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
@@ -488,8 +509,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- ============ Projet 2 : maison volets bois — CURSEUR GLISSANT ============ -->
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
 <div class="ba-slider" data-ba-slider style="aspect-ratio: 4/3;">
-<div class="ba-layer"><img alt="Maison de village avec volets bois après rénovation, enduit crème lisse" loading="lazy" src="images/realisations/b-maison-volets-apres.jpg"/></div>
-<div class="ba-layer ba-before"><img alt="La même maison avant travaux, crépi blanc très texturé et encrassé" loading="lazy" src="images/realisations/b-maison-volets-avant.jpg"/></div>
+<div class="ba-layer"><img width="1400" height="1050" alt="Maison de village avec volets bois après rénovation, enduit crème lisse" loading="lazy" src="images/realisations/b-maison-volets-apres.jpg"/></div>
+<div class="ba-layer ba-before"><img width="1400" height="1050" alt="La même maison avant travaux, crépi blanc très texturé et encrassé" loading="lazy" src="images/realisations/b-maison-volets-avant.jpg"/></div>
 <input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : faites glisser pour révéler"/>
 <div class="ba-handle" aria-hidden="true"></div>
 <span class="ba-tag ba-tag-left">Avant</span>
@@ -510,8 +531,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- ============ Projet 3 : maison de maître — CURSEUR GLISSANT ============ -->
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
 <div class="ba-slider" data-ba-slider style="aspect-ratio: 3/4;">
-<div class="ba-layer"><img alt="Maison de maître après rénovation de façade, enduit crème uniforme" loading="lazy" src="images/realisations/c-maison-maitre-apres.jpg"/></div>
-<div class="ba-layer ba-before"><img alt="La même maison de maître avant travaux, enduit fissuré et cloqué" loading="lazy" src="images/realisations/c-maison-maitre-avant.jpg"/></div>
+<div class="ba-layer"><img width="1050" height="1400" alt="Maison de maître après rénovation de façade, enduit crème uniforme" loading="lazy" src="images/realisations/c-maison-maitre-apres.jpg"/></div>
+<div class="ba-layer ba-before"><img width="1050" height="1400" alt="La même maison de maître avant travaux, enduit fissuré et cloqué" loading="lazy" src="images/realisations/c-maison-maitre-avant.jpg"/></div>
 <input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : faites glisser pour révéler"/>
 <div class="ba-handle" aria-hidden="true"></div>
 <span class="ba-tag ba-tag-left">Avant</span>
@@ -533,11 +554,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
 <div class="ba-stack relative">
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Maison neuve à toit plat en briques monomur, avant application de l'enduit" loading="lazy" src="images/realisations/d-maison-contemporaine-avant.jpg"/>
+<img width="1400" height="630" alt="Maison neuve à toit plat en briques monomur, avant application de l'enduit" loading="lazy" src="images/realisations/d-maison-contemporaine-avant.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="La même maison neuve après application d'un enduit monocouche beige" loading="lazy" src="images/realisations/d-maison-contemporaine-apres.jpg"/>
+<img width="1400" height="630" alt="La même maison neuve après application d'un enduit monocouche beige" loading="lazy" src="images/realisations/d-maison-contemporaine-apres.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
@@ -557,11 +578,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="renovation">
 <div class="ba-stack relative">
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="Maison en cours de travaux, échafaudage et banderole BATI-CA FRANCE" loading="lazy" src="images/realisations/e-batiment-chantier.jpg"/>
+<img width="1400" height="1050" alt="Maison en cours de travaux, échafaudage et banderole BATI-CA FRANCE" loading="lazy" src="images/realisations/e-batiment-chantier.jpg"/>
 <span class="ba-tag ba-tag-left">Pendant</span>
 </div>
 <div class="relative" style="aspect-ratio: 16/9;">
-<img alt="La même maison une fois les travaux terminés, façade gris clair" loading="lazy" src="images/realisations/e-batiment-termine.jpg"/>
+<img width="1400" height="1050" alt="La même maison une fois les travaux terminés, façade gris clair" loading="lazy" src="images/realisations/e-batiment-termine.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Rénovation</span>
@@ -581,15 +602,15 @@ document.addEventListener('DOMContentLoaded', function () {
 <article class="project-card reveal card-lift lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
 <div class="relative">
 <div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Maison neuve en briques monomur avant application de l'enduit" loading="lazy" src="images/realisations/g-maison-neuve-avant.jpg"/>
+<img width="1600" height="720" class="w-full h-full object-cover" alt="Maison neuve en briques monomur avant application de l'enduit" loading="lazy" src="images/realisations/g-maison-neuve-avant.jpg"/>
 <span class="ba-tag ba-tag-left">Avant</span>
 </div>
 <div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="La même maison après application de l'enduit monocouche beige" loading="lazy" src="images/realisations/g-maison-neuve-apres.jpg"/>
+<img width="1600" height="720" class="w-full h-full object-cover" alt="La même maison après application de l'enduit monocouche beige" loading="lazy" src="images/realisations/g-maison-neuve-apres.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Vue arrière de la même maison, façade et mur de terrasse enduits" loading="lazy" src="images/realisations/g-maison-neuve-arriere.jpg"/>
+<img width="1600" height="720" class="w-full h-full object-cover" alt="Vue arrière de la même maison, façade et mur de terrasse enduits" loading="lazy" src="images/realisations/g-maison-neuve-arriere.jpg"/>
 <span class="ba-tag ba-tag-left">Après</span>
 </div>
 <span class="absolute top-4 left-4 z-[6] bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
@@ -604,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
 <div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Maison neuve à étage, enduit crème et ocre, garage attenant" loading="lazy" src="images/realisations/h-maison-deux-tons.jpg"/>
+<img width="1600" height="720" class="w-full h-full object-cover" alt="Maison neuve à étage, enduit crème et ocre, garage attenant" loading="lazy" src="images/realisations/h-maison-deux-tons.jpg"/>
 <span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
 </div>
 <div class="p-8">
@@ -617,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <article class="project-card reveal card-lift bg-white rounded-xl overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.04)]" data-category="enduit-neuf">
 <div class="relative" style="aspect-ratio: 21/9;">
-<img class="w-full h-full object-cover" alt="Maison contemporaine de plain-pied, enduit beige et volumes anthracite" loading="lazy" src="images/realisations/i-maison-beige-anthracite.jpg"/>
+<img width="1600" height="721" class="w-full h-full object-cover" alt="Maison contemporaine de plain-pied, enduit beige et volumes anthracite" loading="lazy" src="images/realisations/i-maison-beige-anthracite.jpg"/>
 <span class="absolute top-4 left-4 bg-bronze/90 text-white px-3 py-1 rounded-sm font-label-caps text-[10px] uppercase">Enduit sur neuf</span>
 </div>
 <div class="p-8">
@@ -655,22 +676,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- Footer -->
 <footer class="full-width bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-padding-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-padding-mobile md:py-section-padding-desktop">
 <div class="md:col-span-4">
 <div class="flex items-center gap-3 mb-6">
-<img alt="Logo BATI-CA FRANCE" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQXdIScB3hxL109eRYQd9hlAyKeg9R5AwvzMSNk9BKfec7EhOfUpwT0z8K9gApOnmeaZ98I2gGZplpDyH5BrK4-L9eDk3EZCnYuSm2Cn2qj7y6QDVO24YxqUi_wrlqu24nNY0bbJ7300uZA9lKy3STXkOQl4nAewF3gGwvhIqNY84uEOnMUgtGPKcgAjOO2hfLxYkA2YMQ-J5JyqV0AdQ5ULx3-Wz0UROr7nX4-jB8BOJEA0y-tcMdEVrSJSB-H9w4GEQY6Wb_n8"/>
+<img width="512" height="506" alt="Logo BATI-CA FRANCE" class="h-8 w-auto" src="images/logo.jpg"/>
 <span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-surface uppercase">BATI-CA FRANCE</span>
 </div>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
-                    L'expertise en rénovation de façade et taille de pierre au service de votre patrimoine, dans le Territoire de Belfort et le Nord Franche-Comté.
+                    L'expertise en rénovation de façade et joint de pierre au service de votre patrimoine, dans le Territoire de Belfort et le Nord Franche-Comté.
                 </p>
 </div>
 <div class="md:col-span-2 md:col-start-6">
 <h3 class="font-label-caps text-label-caps text-primary mb-6">Services</h3>
 <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Ravalement</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Joint de pierre</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Enduit sur neuf</a></li>
+<li><a class="hover:text-primary transition-colors" href="ravalement-facade.html">Ravalement</a></li>
+<li><a class="hover:text-primary transition-colors" href="joint-de-pierre.html">Joint de pierre</a></li>
+<li><a class="hover:text-primary transition-colors" href="enduit-monocouche.html">Enduit sur neuf</a></li>
 <li><a class="hover:text-primary transition-colors" href="index.html#contact">Nettoyage</a></li>
 </ul>
 </div>
@@ -680,7 +701,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><a class="hover:text-primary transition-colors" href="index.html#propos">À Propos</a></li>
 <li><a class="font-bold text-primary" href="realisations.html">Réalisations</a></li>
 <li><a class="hover:text-primary transition-colors" href="index.html#contact">Contact</a></li>
-<li><a class="hover:text-primary transition-colors" href="index.html#contact">Recrutement</a></li>
 </ul>
 </div>
 <div class="md:col-span-3">
@@ -706,7 +726,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <span class="font-label-caps text-label-caps text-on-surface-variant">© 2026 BATI-CA FRANCE. Tous droits réservés.</span>
 <div class="flex gap-6 font-label-caps text-label-caps text-on-surface-variant">
 <a class="hover:text-primary transition-colors" href="mentions-legales.html">Mentions Légales</a>
-<a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a>
+<a class="hover:text-primary transition-colors" href="confidentialite.html">Politique de Confidentialité</a><button class="hover:text-primary transition-colors text-left" data-cookie-manage="" type="button">Gérer les cookies</button>
 </div>
 </div>
 </div>
@@ -718,14 +738,14 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="flex-1">
 <p class="font-headline-md text-lg md:text-xl mb-0">
-        Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site.
+        Avec votre accord, nous utilisons des cookies de mesure d'audience (Google Analytics) et de publicité (Google Ads). Vous pouvez accepter, refuser ou personnaliser, et changer d'avis à tout moment via « Gérer les cookies » en bas de page.
       </p>
 </div>
-<div class="flex gap-4 shrink-0">
+<div class="flex flex-wrap justify-center gap-3 shrink-0">
 <button class="bg-bronze text-white px-8 py-3 rounded-lg font-button text-button hover:bg-primary transition-all duration-300" id="cookie-accept-all">
         Accepter
       </button>
-<button class="border border-white text-white px-8 py-3 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300" id="cookie-open-settings">
+<button class="border border-white text-white px-8 py-3 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300" id="cookie-refuse-simple">Tout refuser</button><button class="border border-white text-white px-8 py-3 rounded-lg font-button text-button hover:bg-white hover:text-primary transition-all duration-300" id="cookie-open-settings">
         Personnaliser
       </button>
 </div>
@@ -746,7 +766,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p class="font-bold mb-1">Cookies de mesure d'audience</p>
 <p class="text-sm text-white/80">Nous aident à comprendre la fréquentation du site.</p>
 </div>
-<input checked="" class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
+<input class="w-5 h-5 shrink-0" id="cookie-stats" type="checkbox"/>
 </div>
 <div class="flex items-center justify-between gap-6 bg-white/10 rounded-lg p-4">
 <div>
