@@ -1,0 +1,10 @@
+# Fichiers de travail internes (audit, outils) : ne jamais publier
+_travail/
+
+# Agents de contrôle Claude : usage local uniquement, ne pas publier
+.claude/
+
+# Fichiers système
+desktop.ini
+Thumbs.db
+.DS_Store

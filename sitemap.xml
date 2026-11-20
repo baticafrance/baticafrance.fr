@@ -1,67 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://baticafrance.fr/</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/realisations.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/ravalement-facade.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/crepi-enduit-rpe.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/enduit-monocouche.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/isolation-exterieure.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/joint-de-pierre.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/mentions-legales.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://baticafrance.fr/confidentialite.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
+  <url><loc>https://baticafrance.fr/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/ravalement-facade</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/crepi-enduit-rpe</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/enduit-monocouche</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/isolation-exterieure</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/joint-de-pierre</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/realisations</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/mentions-legales</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://baticafrance.fr/confidentialite</loc><lastmod>2026-11-19</lastmod></url>
 </urlset>

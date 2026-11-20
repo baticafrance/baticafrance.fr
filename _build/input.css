@@ -1,0 +1,160 @@
+/* Feuille de style source du site BATI-CA FRANCE (compilée vers css/site.css). */
+
+/* ---------- Polices hébergées sur le site (aucun appel à Google Fonts) ---------- */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/manrope-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/manrope-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../fonts/playfair-display-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../fonts/playfair-display-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('../fonts/material-symbols-outlined-subset.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+  section[id], [id="contenu"] { scroll-margin-top: 110px; }
+}
+
+/* ---------- Icônes ----------
+   Dans @layer components : les classes de taille (text-[20px]…) peuvent ainsi la remplacer.
+   Largeur fixe de 1em : pas de décalage pendant le chargement de la police. */
+@layer components {
+.material-symbols-outlined {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  overflow: hidden;
+}
+}
+.icon-fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* Vieux navigateurs sans la propriété « inset » (iOS 14 et moins) */
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+
+/* ---------- Menu mobile (affiché tel quel si JavaScript ne fonctionne pas) ---------- */
+#mobile-menu { display: flex; }
+html:not(.js) body > header { position: static; } /* sans JavaScript, le menu ouvert ne cache pas la page */
+.js #mobile-menu { display: none; }
+.js #mobile-menu.open { display: flex; }
+@media (min-width: 1280px) { #mobile-menu, .js #mobile-menu.open { display: none; } }
+
+/* ---------- Menu « Prestations » (ouverture au clic, au clavier et au survol) ---------- */
+.dropdown-panel { display: none; }
+.dropdown:hover .dropdown-panel,
+.dropdown.is-open .dropdown-panel { display: block; }
+
+/* ---------- Apparition au défilement : uniquement si JavaScript est actif ---------- */
+.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+.js .reveal.active { opacity: 1; transform: none; }
+
+/* ---------- Cartes (effet au survol, seulement avec une souris) ---------- */
+.card-lift { transition: transform .3s ease, box-shadow .3s ease; }
+@media (hover: hover) {
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0, 0, 0, .08); }
+}
+
+/* ---------- Avant / Après : curseur glissant ---------- */
+.ba-slider { position: relative; overflow: hidden; background: #dbdad9; }
+.ba-slider img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ba-slider .ba-layer { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.ba-slider .ba-before { -webkit-clip-path: inset(0 50% 0 0); clip-path: inset(0 50% 0 0); }
+.ba-handle {
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 2px; background: #fff; transform: translateX(-1px);
+  pointer-events: none; box-shadow: 0 0 6px rgba(0, 0, 0, .35);
+}
+.ba-handle::after {
+  content: 'compare_arrows';
+  font-family: 'Material Symbols Outlined'; font-size: 22px; color: #171818;
+  -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px; border-radius: 9999px;
+  background: #fff; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+.ba-range {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;
+  margin: 0; padding: 0; opacity: 0; cursor: ew-resize; z-index: 5;
+  -webkit-appearance: none; appearance: none; background: transparent;
+  touch-action: pan-y;
+}
+.ba-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 48px; height: 100vh; cursor: ew-resize; }
+.ba-range::-moz-range-thumb { width: 48px; height: 100vh; border: 0; cursor: ew-resize; }
+.ba-range:focus-visible + .ba-handle::after { outline: 3px solid #92634A; outline-offset: 2px; }
+.ba-tag {
+  position: absolute; bottom: 12px; z-index: 4;
+  background: rgba(23, 24, 24, .78); color: #fff;
+  padding: 4px 10px; border-radius: 2px;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  pointer-events: none;
+}
+.ba-tag-left { left: 12px; }
+.ba-tag-right { right: 12px; }
+.ba-stack img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@supports not (aspect-ratio: 1) {
+  .ba-slider { height: 0; padding-top: 75%; }
+}
+
+.filter-chip.is-active { background: #171818; color: #ffffff; }
+
+/* ---------- Bandeau cookies ---------- */
+#cookie-banner { max-height: 90vh; overflow-y: auto; }
+
+/* ---------- Moins d'animations si l'utilisateur l'a demandé ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .card-lift, .card-lift:hover { transition: none; transform: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
