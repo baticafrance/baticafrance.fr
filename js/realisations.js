@@ -46,5 +46,21 @@
         if (annonce) annonce.textContent = visibles + (visibles > 1 ? ' chantiers affichés' : ' chantier affiché');
       });
     });
+
+    /* Lien vers un chantier (#grange-en-pierre…) : si un filtre le cache, on remet « Tous » puis on y va. */
+    function allerAuChantier() {
+      var id = window.location.hash.slice(1);
+      if (!id) return;
+      try { id = decodeURIComponent(id); } catch (e) { return; }
+      var cible = document.getElementById(id);
+      if (!cible || !cible.classList.contains('project-card')) return;
+      if (cible.classList.contains('hidden')) {
+        var tous = document.querySelector('.filter-chip[data-filter="tous"]');
+        if (tous) tous.click();
+        cible.scrollIntoView();
+      }
+    }
+    window.addEventListener('hashchange', allerAuChantier);
+    allerAuChantier();
   });
 })();
