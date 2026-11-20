@@ -260,11 +260,32 @@
       var MAX = 10 * 1024 * 1024;
       var erreurTexte = erreur.innerHTML;
 
+      /* Description du projet obligatoire : 10 caractères minimum, les espaces seuls ne comptent pas.
+         Le message s'affiche dans la bulle du navigateur, comme pour les autres champs obligatoires. */
+      var description = document.getElementById('devis-message');
+      function verifierDescription() {
+        if (!description || !description.setCustomValidity) return true;
+        var n = description.value.replace(/^\s+|\s+$/g, '').length;
+        description.setCustomValidity(n === 0 ? 'Merci de décrire votre projet' : (n < 10 ? 'Merci de décrire votre projet (10 caractères minimum)' : ''));
+        return n >= 10;
+      }
+      if (description) {
+        description.addEventListener('input', verifierDescription);
+        form.addEventListener('reset', function () { setTimeout(verifierDescription, 0); }); // formulaire vidé après envoi
+        verifierDescription();
+      }
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         succes.classList.add('hidden');
         erreur.classList.add('hidden');
         erreur.innerHTML = erreurTexte;
+
+        /* Sécurité pour les navigateurs qui laissent passer un formulaire incomplet. */
+        if (!verifierDescription()) {
+          if (description.reportValidity) description.reportValidity(); else description.focus();
+          return;
+        }
 
         /* Champ piège invisible : rempli seulement par les robots. */
         if (piege && piege.value) { succes.classList.remove('hidden'); form.reset(); return; }
